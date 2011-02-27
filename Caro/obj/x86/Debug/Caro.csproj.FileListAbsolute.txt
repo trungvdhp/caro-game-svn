@@ -1,0 +1,10 @@
+D:\Projects\Caro\Caro\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\Caro\Caro\obj\x86\Debug\Caro.Properties.Resources.resources
+D:\Projects\Caro\Caro\obj\x86\Debug\ResGen.read.1.tlog
+D:\Projects\Caro\Caro\obj\x86\Debug\ResGen.write.1.tlog
+D:\Projects\Caro\Caro\bin\Debug\Caro.exe
+D:\Projects\Caro\Caro\bin\Debug\Caro.pdb
+D:\Projects\Caro\Caro\obj\x86\Debug\Caro.exe
+D:\Projects\Caro\Caro\obj\x86\Debug\Caro.pdb
+D:\Projects\Caro\Caro\obj\x86\Debug\Caro.CaroBoardUI.resources
+D:\Projects\Caro\Caro\obj\x86\Debug\Caro.Form1.resources
