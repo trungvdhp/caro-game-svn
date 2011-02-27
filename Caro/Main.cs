@@ -15,5 +15,15 @@ namespace Caro
             InitializeComponent();
             board.NewGame(true);
         }
+
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            board.NewGame(true);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
