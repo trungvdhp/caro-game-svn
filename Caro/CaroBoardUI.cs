@@ -18,6 +18,8 @@ namespace Caro
         CaroBoard _board;
         bool GameOver = false;
         bool StopTimer = false;
+        Point PreviousMove;
+        Point CurrentMove;
 #endregion
 
         public CaroBoardUI()
@@ -43,6 +45,8 @@ namespace Caro
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();
             timer1.Start();
+            PreviousMove = new Point(-1, -1);
+            CurrentMove = new Point(-1, -1);
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -52,13 +56,16 @@ namespace Caro
                 int j = (int)(e.X / CELL_SIZE);
                 if (_board.cells[i, j].state == ' ')
                 {
+                    PreviousMove = CurrentMove;
+                    CurrentMove = new Point(j * CELL_SIZE, i * CELL_SIZE);
                     _board.cells[i, j].state = _board.XPlaying ? 'x' : 'o';
                     _board.XPlaying = !_board.XPlaying;
                     GameOver = _board.IsGameOver;
-                    
                 }
                 else _board.cells[i, j].state = ' ';
-                Rectangle rc = new Rectangle(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                Rectangle rc = new Rectangle(CurrentMove, new Size(CELL_SIZE+1, CELL_SIZE+1));
+                Invalidate(rc);
+                rc = new Rectangle(PreviousMove, new Size(CELL_SIZE+1, CELL_SIZE+1));
                 Invalidate(rc);
             }
             base.OnMouseDown(e);
@@ -82,6 +89,7 @@ namespace Caro
                 e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
                 y += CELL_SIZE;
             }
+            e.Graphics.DrawRectangle(Pens.Red,new Rectangle(CurrentMove,new Size(CELL_SIZE,CELL_SIZE)));
             base.OnPaint(e);
         }
 
