@@ -41,9 +41,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Caro.Properties.Resources.board;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "CaroBoardUI";
-            this.Size = new System.Drawing.Size(356, 356);
+            this.Size = new System.Drawing.Size(358, 358);
             this.ResumeLayout(false);
 
         }

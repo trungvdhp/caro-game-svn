@@ -30,3 +30,5 @@ C:\Users\HaiAnh\Desktop\New folder\caro-game-svn\Caro\obj\x86\Debug\ResGen.read.
 C:\Users\HaiAnh\Desktop\New folder\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 C:\Users\HaiAnh\Desktop\New folder\caro-game-svn\Caro\obj\x86\Debug\ResGen.write.1.tlog
 C:\Users\HaiAnh\Desktop\New folder\caro-game-svn\Caro\bin\Debug\Caro.pdb
+D:\Projects\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\Projects\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
