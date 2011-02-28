@@ -45,8 +45,8 @@ namespace Caro
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();
             timer1.Start();
-            PreviousMove = new Point(-1, -1);
-            CurrentMove = new Point(-1, -1);
+            PreviousMove = new Point(-CELL_SIZE, -CELL_SIZE);
+            CurrentMove = new Point(-CELL_SIZE, -CELL_SIZE);
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
