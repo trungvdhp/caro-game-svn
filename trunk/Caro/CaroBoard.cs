@@ -69,7 +69,6 @@ namespace Caro
         }
         public CaroBoard():this(14)
         {
-
         }
     }
 }
