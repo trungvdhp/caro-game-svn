@@ -40,13 +40,14 @@ namespace Caro
             StopTimer = false;
             _board = new CaroBoard(19);
             if (!defaultFirst) _board.XPlaying = !_board.XPlaying;
-            this.MaximumSize = new Size(_board.size * CELL_SIZE + 4, _board.size * CELL_SIZE + 4);
-            this.MinimumSize = new Size(_board.size * CELL_SIZE + 4, _board.size * CELL_SIZE + 4);
+            this.MaximumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
+            this.MinimumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();
             timer1.Start();
             PreviousMove = new Point(-CELL_SIZE, -CELL_SIZE);
             CurrentMove = new Point(-CELL_SIZE, -CELL_SIZE);
+            
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -72,7 +73,7 @@ namespace Caro
         } 
         protected override void OnPaint(PaintEventArgs e)
         {
-            int y = 0,x;
+            int y = 0,x=0;
             for (int i = 0; i < _board.size; i++)
             {
                 x = 0;
@@ -89,6 +90,8 @@ namespace Caro
                 e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
                 y += CELL_SIZE;
             }
+            e.Graphics.DrawLine(Pens.Black, 0, x, this.Height, x);
+            e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
             e.Graphics.DrawRectangle(Pens.Red,new Rectangle(CurrentMove,new Size(CELL_SIZE,CELL_SIZE)));
             base.OnPaint(e);
         }

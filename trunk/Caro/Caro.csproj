@@ -83,13 +83,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\images\board.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
