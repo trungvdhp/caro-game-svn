@@ -60,9 +60,30 @@ namespace Caro.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap blackp {
+            get {
+                object obj = ResourceManager.GetObject("blackp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gomokub {
+            get {
+                object obj = ResourceManager.GetObject("gomokub", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap o {
             get {
                 object obj = ResourceManager.GetObject("o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap whitep {
+            get {
+                object obj = ResourceManager.GetObject("whitep", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
