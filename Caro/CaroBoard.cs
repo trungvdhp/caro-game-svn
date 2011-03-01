@@ -19,7 +19,6 @@ namespace Caro
         public int size { get; private set; }
         private int[] dx = { 0, 1, -1, 1 };
         private int[] dy = { 1, 0, 1, 1 };
-        //public bool GameOver = false;
         public bool IsGameOver
         {
             get

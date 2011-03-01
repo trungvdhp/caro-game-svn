@@ -60,13 +60,6 @@ namespace Caro.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap board {
-            get {
-                object obj = ResourceManager.GetObject("board", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap o {
             get {
                 object obj = ResourceManager.GetObject("o", resourceCulture);
