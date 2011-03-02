@@ -18,8 +18,6 @@ namespace Caro
         CaroBoard _board;
         bool GameOver = false;
         bool StopTimer = false;
-        Point PreviousMove;
-        Point CurrentMove;
 #endregion
 
         public CaroBoardUI()
@@ -45,8 +43,8 @@ namespace Caro
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();
             timer1.Start();
-            PreviousMove = new Point(-CELL_SIZE, -CELL_SIZE);
-            CurrentMove = new Point(-CELL_SIZE, -CELL_SIZE);
+            _board.PrevMove.Set(-1, -1);
+            _board.CurrMove.Set(-1, -1);
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -58,16 +56,16 @@ namespace Caro
                 if (i >= _board.size || i < 0 || j > _board.size || j < 0) return;
                 if (_board.cells[i, j] == ' ')
                 {
-                    PreviousMove = CurrentMove;
-                    CurrentMove = new Point(j * CELL_SIZE, i * CELL_SIZE);
+                    _board.PrevMove.Set(_board.CurrMove);
+                    _board.CurrMove.Set(j, i);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
                     _board.XPlaying = !_board.XPlaying;
                     GameOver = _board.IsGameOver;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(CurrentMove, new Size(CELL_SIZE+1, CELL_SIZE+1));
+                Rectangle rc = new Rectangle(_board.PrevMove.x * CELL_SIZE, _board.PrevMove.y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new Rectangle(PreviousMove, new Size(CELL_SIZE+1, CELL_SIZE+1));
+                rc = new Rectangle(_board.CurrMove.x * CELL_SIZE, _board.CurrMove.y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
             }
             base.OnMouseDown(e);
@@ -93,7 +91,7 @@ namespace Caro
             }
             e.Graphics.DrawLine(Pens.Black, 0, x, this.Height, x);
             e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
-            e.Graphics.DrawRectangle(Pens.Red,new Rectangle(CurrentMove,new Size(CELL_SIZE,CELL_SIZE)));
+            e.Graphics.DrawRectangle(Pens.Red,new Rectangle(_board.CurrMove.x*CELL_SIZE,_board.CurrMove.y*CELL_SIZE,CELL_SIZE,CELL_SIZE));
             base.OnPaint(e);
         }
 
