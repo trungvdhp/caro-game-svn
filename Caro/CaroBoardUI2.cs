@@ -41,15 +41,15 @@ namespace Caro
                 int i = (int)((e.Y -TopLeft.Y)/ CELL_SIZE);
                 int j = (int)((e.X -TopLeft.X)/ CELL_SIZE);
                 if(i>=_board.size||i<0||j>_board.size||j<0) return;
-                if (_board.cells[i, j].state == ' ')
+                if (_board.cells[i, j] == ' ')
                 {
                     PreviousMove = CurrentMove;
                     CurrentMove = new Point(j * CELL_SIZE + TopLeft.X, i * CELL_SIZE + TopLeft.Y);
-                    _board.cells[i, j].state = _board.XPlaying ? 'x' : 'o';
+                    _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
                     _board.XPlaying = !_board.XPlaying;
                     GameOver = _board.IsGameOver;
                 }
-                else _board.cells[i, j].state = ' ';
+                else _board.cells[i, j] = ' ';
                 Rectangle rc = new Rectangle(CurrentMove, new Size(CELL_SIZE + 1, CELL_SIZE + 1));
                 Invalidate(rc);
                 rc = new Rectangle(PreviousMove, new Size(CELL_SIZE + 1, CELL_SIZE + 1));
@@ -66,9 +66,9 @@ namespace Caro
                 x = TopLeft.X;
                 for (int j = 0; j < _board.size; j++)
                 {
-                    if (_board.cells[i, j].state == 'x')
+                    if (_board.cells[i, j] == 'x')
                         e.Graphics.DrawImage(_ImgX, x, y);
-                    else if (_board.cells[i, j].state == 'o')
+                    else if (_board.cells[i, j] == 'o')
                         e.Graphics.DrawImage(_ImgO, x, y);
                     x += CELL_SIZE;
                 }
