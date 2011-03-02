@@ -57,15 +57,15 @@ namespace Caro
                 if (_board.cells[i, j] == ' ')
                 {
                     _board.PrevMove.Set(_board.CurrMove);
-                    _board.CurrMove.Set(j, i);
+                    _board.CurrMove.Set(i,j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    _board.XPlaying = !_board.XPlaying;
                     GameOver = _board.IsGameOver;
+                    _board.XPlaying = !_board.XPlaying;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(_board.PrevMove.x * CELL_SIZE, _board.PrevMove.y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+                Rectangle rc = new Rectangle(_board.PrevMove.y * CELL_SIZE,_board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new Rectangle(_board.CurrMove.x * CELL_SIZE, _board.CurrMove.y * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+                rc = new Rectangle(_board.CurrMove.y * CELL_SIZE,_board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
             }
             base.OnMouseDown(e);

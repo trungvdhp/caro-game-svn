@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Caro
 {
@@ -38,12 +39,72 @@ namespace Caro
         {
             get
             {
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        if (cells[i, j] == 'x' || cells[i, j] == 'o')
-                            if (Check5Row(i, j, 1, 4) >= 5)
-                                return true;
+                //for (int i = 0; i < size; i++)
+                //    for (int j = 0; j < size; j++)
+                //        if (cells[i, j] == 'x' || cells[i, j] == 'o')
+                //            if (Check5Row(i, j, 1, 4) >= 5)
+                //                return true;
+                //return false;
+                char CurrPlayer = XPlaying?'x':'o';
+                int count=1;
+                bool next=true,prev=true;
+                //Console.WriteLine("{0}-{1}:\n", CurrMove.x, CurrMove.y);
+                for (int i = 1; i < 5; i++)
+                {
+                    if (CurrMove.x + i < size && cells[CurrMove.x + i, CurrMove.y] == CurrPlayer && next)
+                        count++;
+                    else next = false;
+                    if (CurrMove.x - i >=0 && cells[CurrMove.x - i, CurrMove.y] == CurrPlayer && prev)
+                        count++;
+                    else prev = false;
+                }
+                if (count >= 5) return true;
+                count = 1;
+                next = prev = true;
+                for (int i = 1; i < 5; i++)
+                {
+                    if (CurrMove.y + i < size && cells[CurrMove.x,CurrMove.y+i] == CurrPlayer && next)
+                        count++;
+                    else next = false;
+                    if (CurrMove.y - i >= 0 && cells[CurrMove.x, CurrMove.y - i] == CurrPlayer && prev)
+                        count++;
+                    else prev = false;
+                }
+                if (count >= 5) return true;
+                count = 1;
+                next = prev = true;
+                for (int i = 1; i < 5; i++)
+                {
+                    if (CurrMove.x + i < size && CurrMove.y+i<size && cells[CurrMove.x + i, CurrMove.y+i] == CurrPlayer && next)
+                        count++;
+                    else next = false;
+                    if (CurrMove.x - i >=0 && CurrMove.y - i >=0 && cells[CurrMove.x - i, CurrMove.y-i] == CurrPlayer && prev)
+                        count++;
+                    else prev = false;
+                }
+                if (count >= 5) return true;
+                count = 1;
+                next = prev = true;
+                //Console.WriteLine("{0}-{1}:\n", CurrMove.x, CurrMove.y);
+                for (int i = 1; i < 5; i++)
+                {
+                    if (CurrMove.x + i < size && CurrMove.y - i >= 0 && cells[CurrMove.x + i, CurrMove.y - i] == CurrPlayer && next)
+                    {
+                        count++;
+                        //Console.WriteLine("next {0}-{1}-{2}\n", CurrMove.x + i, CurrMove.y - i,count);
+                    }
+                    else next = false;
+                    if (CurrMove.x - i >= 0 && CurrMove.y + i < size && cells[CurrMove.x - i, CurrMove.y + i] == CurrPlayer && prev)
+                    {
+                        count++;
+                        //Console.WriteLine("prev {0}-{1}-{2}-{3}-{4}-{5}\n", CurrMove.x - i, CurrMove.y + i, count, cells[CurrMove.x - i, CurrMove.y + i], CurrPlayer,prev);
+                        
+                    }
+                    else prev = false;
+                }
+                if (count >= 5) return true;
                 return false;
+
             }
         }
         /// <summary>
