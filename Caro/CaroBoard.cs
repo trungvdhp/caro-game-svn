@@ -48,7 +48,7 @@ namespace Caro
                 char CurrPlayer = XPlaying?'x':'o';
                 int count=1;
                 bool next=true,prev=true;
-                //Console.WriteLine("{0}-{1}:\n", CurrMove.x, CurrMove.y);
+                Console.WriteLine("{0}-{1}:\n", CurrMove.x, CurrMove.y);
                 for (int i = 1; i < 5; i++)
                 {
                     if (CurrMove.x + i < size && cells[CurrMove.x + i, CurrMove.y] == CurrPlayer && next)
