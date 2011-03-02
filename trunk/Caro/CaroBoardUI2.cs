@@ -36,7 +36,7 @@ namespace Caro
             {
                 int i = (int)((e.Y -TopLeft.Y)/ CELL_SIZE);
                 int j = (int)((e.X -TopLeft.X)/ CELL_SIZE);
-                if(i>=_board.size||i<0||j>_board.size||j<0) return;
+                if (i >= _board.size || i < 0 || j >= _board.size || j < 0) return;
                 if (_board.cells[i, j] == ' ')
                 {
                     _board.PrevMove.Set(_board.CurrMove);
@@ -46,10 +46,11 @@ namespace Caro
                     _board.XPlaying = !_board.XPlaying;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(_board.CurrMove.y+TopLeft.Y,_board.CurrMove.x+TopLeft.X, CELL_SIZE + 1, CELL_SIZE + 1);
+                Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE + TopLeft.X, _board.CurrMove.x * CELL_SIZE + TopLeft.Y, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new Rectangle(_board.PrevMove.y+TopLeft.Y,_board.PrevMove.x+TopLeft.X, CELL_SIZE + 1, CELL_SIZE + 1);
+                rc = new Rectangle( _board.PrevMove.y * CELL_SIZE + TopLeft.X,_board.PrevMove.x * CELL_SIZE + TopLeft.Y, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
+                //Invalidate();
             }
             base.OnMouseDown(e);
         }
@@ -63,9 +64,9 @@ namespace Caro
                 for (int j = 0; j < _board.size; j++)
                 {
                     if (_board.cells[i, j] == 'x')
-                        e.Graphics.DrawImage(_ImgX, x, y);
+                        e.Graphics.DrawImage(_ImgX,x,y);
                     else if (_board.cells[i, j] == 'o')
-                        e.Graphics.DrawImage(_ImgO, x, y);
+                        e.Graphics.DrawImage(_ImgO, x,y);
                     x += CELL_SIZE;
                 }
                 y += CELL_SIZE;

@@ -53,7 +53,7 @@ namespace Caro
             {
                 int i = (int)(e.Y / CELL_SIZE);
                 int j = (int)(e.X / CELL_SIZE);
-                if (i >= _board.size || i < 0 || j > _board.size || j < 0) return;
+                if (i >= _board.size || i < 0 || j >= _board.size || j < 0) return;
                 if (_board.cells[i, j] == ' ')
                 {
                     _board.PrevMove.Set(_board.CurrMove);
