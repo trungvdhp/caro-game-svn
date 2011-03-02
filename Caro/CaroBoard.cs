@@ -8,6 +8,10 @@ namespace Caro
     {
         public int x;
         public int y;
+        public void Set(Position p)
+        {
+            x = p.x;y=p.y;
+        }
         public void Set(int a, int b)
         {
             x = a; y = b;
@@ -16,6 +20,7 @@ namespace Caro
         {
             x = a; y = b;
         }
+        
     }
     class CaroBoard
     {
@@ -24,6 +29,8 @@ namespace Caro
         public int size { get; private set; }
         private int[] dx = { 0, 1, -1, 1 };
         private int[] dy = { 1, 0, 1, 1 };
+        public Position PrevMove = new Position(-1,-1);
+        public Position CurrMove = new Position(-1,-1);
         /// <summary>
         /// THuộc tính kiểm tra GameOver theo phương pháp kiểm tra 5 quân liên tiếp với từng quân
         /// </summary>
