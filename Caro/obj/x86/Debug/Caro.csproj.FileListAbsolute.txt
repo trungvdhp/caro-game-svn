@@ -34,3 +34,17 @@ D:\Projects\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
 D:\Projects\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 D:\Projects\caro-game-svn\Caro\obj\x86\Debug\Caro.CaroBoardUI2.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Debug\Caro.Test.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.exe
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.pdb
+D:\caro-game-svn\Caro\bin\Debug\Caro.exe
+D:\caro-game-svn\Caro\bin\Debug\Caro.pdb
+D:\caro-game-svn\Caro\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.CaroBoardUI2.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.CaroBoardUI.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.Main.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.Properties.Resources.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\Caro.Test.resources
+D:\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\caro-game-svn\Caro\obj\x86\Debug\ResGen.read.1.tlog
+D:\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\caro-game-svn\Caro\obj\x86\Debug\ResGen.write.1.tlog

@@ -16,8 +16,6 @@ namespace Caro
         Image _ImgX = new Bitmap(Properties.Resources.blackp);
         Image _ImgO = new Bitmap(Properties.Resources.whitep);
         const int CELL_SIZE = 35;
-        Point PreviousMove;
-        Point CurrentMove;
         bool GameOver;
         Point TopLeft = new Point(24, 18);
 
@@ -31,8 +29,6 @@ namespace Caro
         public void NewGame()
         {
             _board = new CaroBoard(15);
-            PreviousMove = new Point(-CELL_SIZE, -CELL_SIZE);
-            CurrentMove = new Point(-CELL_SIZE, -CELL_SIZE);
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -43,16 +39,16 @@ namespace Caro
                 if(i>=_board.size||i<0||j>_board.size||j<0) return;
                 if (_board.cells[i, j] == ' ')
                 {
-                    PreviousMove = CurrentMove;
-                    CurrentMove = new Point(j * CELL_SIZE + TopLeft.X, i * CELL_SIZE + TopLeft.Y);
+                    _board.PrevMove.Set(_board.CurrMove);
+                    _board.CurrMove.Set(i, j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    _board.XPlaying = !_board.XPlaying;
                     GameOver = _board.IsGameOver;
+                    _board.XPlaying = !_board.XPlaying;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(CurrentMove, new Size(CELL_SIZE + 1, CELL_SIZE + 1));
+                Rectangle rc = new Rectangle(_board.CurrMove.y+TopLeft.Y,_board.CurrMove.x+TopLeft.X, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new Rectangle(PreviousMove, new Size(CELL_SIZE + 1, CELL_SIZE + 1));
+                rc = new Rectangle(_board.PrevMove.y+TopLeft.Y,_board.PrevMove.x+TopLeft.X, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
             }
             base.OnMouseDown(e);
