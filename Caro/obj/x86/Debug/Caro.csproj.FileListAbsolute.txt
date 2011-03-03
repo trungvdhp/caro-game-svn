@@ -48,3 +48,4 @@ D:\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
 D:\caro-game-svn\Caro\obj\x86\Debug\ResGen.read.1.tlog
 D:\caro-game-svn\Caro\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 D:\caro-game-svn\Caro\obj\x86\Debug\ResGen.write.1.tlog
+D:\Projects\caro-game-svn\Caro\obj\x86\Debug\Caro.Fake.resources

@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Gomoku</title>
+<meta name="description" content="Play Gomoku online">
+<meta name="keywords" content="gomoku,games,online">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<script type="text/javascript">
+<!--
+p1=new Image();
+p2=new Image();
+win1=new Image();
+win2=new Image();
+emp=new Image();
+emp_lt=new Image();
+emp_l=new Image();
+emp_lb=new Image();
+emp_t=new Image();
+emp_b=new Image();
+emp_rt=new Image();
+emp_r=new Image();
+emp_rb=new Image();
+clear_lt=new Image();
+clear_lb=new Image();
+clear_rt=new Image();
+clear_rb=new Image();
+p1.src="_piece1.png";
+p2.src="_piece2.png";
+win1.src="_win1.png";
+win2.src="_win2.png";
+emp.src="_empty.png";
+emp_lt.src="_empty_lt.png";
+emp_l.src="_empty_l.png";
+emp_lb.src="_empty_lb.png";
+emp_t.src="_empty_t.png";
+emp_b.src="_empty_b.png";
+emp_rt.src="_empty_rt.png";
+emp_r.src="_empty_r.png";
+emp_rb.src="_empty_rb.png";
+clear_lt.src="_box_lt.png";
+clear_lb.src="_box_lb.png";
+clear_rt.src="_box_rt.png";
+clear_rb.src="_box_rb.png";
+
+f=new Array(256);
+five=new Array(5);
+q=new Array(3);
+m=new Array(3);
+c=new Array(3);
+
+var i;
+for(i=0;i<3;i++)
+  {
+  q[i]=new Array(256);
+  m[i]=new Array(256);
+  }
+
+var best;
+
+function think()
+{da=new Array(1,16,15,17);e=new Array(1,2,4,12,24);var a0,a,d,h,n,p,z;best=0;n=
+0;for(p=0;p<3;p++)for(a0=0;a0<256;a0++){q[p][a0]=0;m[p][a0]=0;}for(a0=0;a0<256;
+a0++){for(d=0;d<4;d++)if((a0/16<12||d==0)&&(a0%16<12||d==1||d==2)&&(a0%16>3||d
+!=2)){c[1]=0;c[2]=0;for(z=0;z<5;z++)c[f[a0+z*da[d]]]++;if(!c[1])p=2;else if(!c[
+2])p=1;else p=0;if(p)for(z=0;z<5;z++){if(c[p]==5)five[z]=a0+z*da[d];else if(f[
+a0+z*da[d]]==0){a=a0+z*da[d];q[0][a]+=e[c[p]];if(c[p]>=2)q[p][a]+=e[c[p]];if(c[
+p]>m[p][a])m[p][a]=c[p];}}}for(p=1;p<3;p++)if(q[p][a0]>=e[4]){h=2*m[p][a0];if(p
+==2)h++;if(q[0][a0]<256)q[0][a0]+=256*h;else if(q[0][a0]<256*h)q[0][a0]=256*h;}
+if(q[0][a0]>q[0][best])n=0;if(q[0][a0]>=q[0][best]){n++;if(Math.random()*n<1)
+best=a0;}}}
+
+function checkwin()
+{
+var z;
+if(five[1]!=0)
+  {
+  for(z=0;z<5;z++)
+    {
+    if(f[five[z]]==1)
+      document.images[five[z]].src=win1.src;
+    else
+      document.images[five[z]].src=win2.src;
+    }
+  document.images[238].src=clear_lt.src;
+  f[238]=1;
+  document.images[239].src=clear_rt.src;
+  f[239]=1;
+  document.images[254].src=clear_lb.src;
+  f[254]=1;
+  document.images[255].src=clear_rb.src;
+  f[255]=1;
+  }
+}
+
+function go(i)
+{
+var d,ofs,z,c2;
+if(f[i]==0 && five[1]==0)
+  {
+  document.images[i].src=p1.src;
+  f[i]=1;
+  think();
+  checkwin();
+
+  if(five[1]==0)
+    {
+    document.images[best].src=p2.src;
+    f[best]=2;
+
+    for(d=0;d<4;d++)
+      for(ofs=-4;ofs<=0;ofs++)
+        if((best/16+ofs>=0 && best/16+ofs<12 || d==0)
+          &&(best%16+ofs>=0 && best%16+ofs<12 || d==1 || d ==2)
+          &&(best%16-ofs>=4 && best%16-ofs<16 || d!=2))
+          {
+          c2=0;
+          for(z=0;z<5;z++)
+            if(f[best+(z+ofs)*da[d]]==2)
+              c2++;
+          if(c2==5)
+            for(z=0;z<5;z++)
+              five[z]=best+(z+ofs)*da[d];
+          }
+    checkwin();
+    }
+  }
+else if (i==238 || i==239 || i==254 || i==255)
+  newgame(0);
+}
+
+function newgame(first)
+{
+var s,i;
+five[1]=0;
+s=1;
+for(i=0;i<256;i++)
+  {
+  if(f[s-1]||first)
+    {
+      if ((s-1)%16 == 0)
+      {
+        if ((s-1)/16 == 0)
+          document.images[s-1].src=emp_lt.src;
+        else if ((s-1)/16 == 15)
+          document.images[s-1].src=emp_lb.src;
+        else
+          document.images[s-1].src=emp_l.src;
+      }
+      else if ((s-1)%16 == 15)
+      {
+        if ((s-1)/16 < 1)
+          document.images[s-1].src=emp_rt.src;
+        else if ((s-1)/16 >= 15)
+          document.images[s-1].src=emp_rb.src;
+        else
+          document.images[s-1].src=emp_r.src;
+      }
+      else
+      {
+        if ((s-1)/16 < 1)
+          document.images[s-1].src=emp_t.src;
+        else if ((s-1)/16 >= 15)
+          document.images[s-1].src=emp_b.src;
+        else
+          document.images[s-1].src=emp.src;
+      }
+    f[s-1]=0;
+    }
+  s=s*180%257;
+  }
+}
+//-->
+</script>
+
+<style type="text/css">
+<!--
+body {background-color:#000000;background-image:url(_back.jpg);
+background-repeat:no-repeat; background-position:center center;}
+html, body {height:100%; top:0; left:0; right:0; margin:0; padding:0;}
+table {border-spacing:0px;}
+td {vertical-align:middle;padding:0px;font-size:11pt;font-family:Arial,Helvetica;color:#606060;}
+td.centered {text-align:center;}
+a:link {color:#606060;}
+a:visited {color:#606060;}
+//-->
+</style>
+
+</head>
+<body onload="newgame(1)">
+
+<table style="width:100%;height:100%;" cellspacing=0>
+<tr><td class="centered">
+
+<table style="width:608px;margin-left:auto;margin-right:auto;" cellspacing=0>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(0);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(1);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(2);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(3);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(4);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(5);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(6);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(7);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(8);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(9);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(10);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(11);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(12);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(13);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(14);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(15);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(16);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(17);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(18);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(19);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(20);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(21);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(22);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(23);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(24);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(25);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(26);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(27);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(28);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(29);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(30);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(31);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(32);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(33);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(34);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(35);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(36);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(37);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(38);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(39);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(40);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(41);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(42);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(43);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(44);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(45);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(46);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(47);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(48);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(49);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(50);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(51);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(52);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(53);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(54);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(55);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(56);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(57);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(58);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(59);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(60);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(61);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(62);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(63);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(64);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(65);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(66);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(67);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(68);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(69);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(70);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(71);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(72);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(73);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(74);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(75);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(76);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(77);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(78);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(79);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(80);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(81);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(82);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(83);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(84);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(85);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(86);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(87);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(88);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(89);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(90);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(91);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(92);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(93);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(94);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(95);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(96);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(97);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(98);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(99);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(100);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(101);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(102);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(103);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(104);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(105);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(106);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(107);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(108);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(109);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(110);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(111);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(112);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(113);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(114);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(115);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(116);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(117);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(118);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(119);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(120);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(121);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(122);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(123);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(124);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(125);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(126);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(127);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(128);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(129);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(130);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(131);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(132);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(133);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(134);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(135);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(136);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(137);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(138);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(139);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(140);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(141);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(142);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(143);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(144);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(145);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(146);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(147);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(148);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(149);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(150);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(151);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(152);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(153);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(154);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(155);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(156);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(157);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(158);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(159);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(160);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(161);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(162);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(163);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(164);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(165);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(166);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(167);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(168);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(169);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(170);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(171);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(172);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(173);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(174);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(175);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(176);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(177);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(178);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(179);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(180);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(181);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(182);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(183);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(184);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(185);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(186);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(187);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(188);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(189);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(190);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(191);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(192);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(193);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(194);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(195);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(196);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(197);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(198);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(199);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(200);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(201);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(202);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(203);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(204);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(205);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(206);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(207);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(208);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(209);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(210);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(211);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(212);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(213);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(214);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(215);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(216);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(217);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(218);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(219);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(220);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(221);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(222);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(223);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(224);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(225);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(226);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(227);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(228);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(229);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(230);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(231);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(232);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(233);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(234);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(235);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(236);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(237);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(238);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(239);" alt=""></td>
+</tr>
+
+<tr>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(240);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(241);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(242);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(243);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(244);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(245);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(246);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(247);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(248);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(249);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(250);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(251);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(252);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(253);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(254);" alt=""></td>
+<td><img src="_pixel.gif" height=38 width=38 onclick="go(255);" alt=""></td>
+</tr>                             
+
+</table>
+
+</td></tr>
+</table>
+
+</body>
+</html>
+

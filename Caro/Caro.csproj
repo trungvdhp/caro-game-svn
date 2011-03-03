@@ -57,6 +57,12 @@
     <Compile Include="CaroBoardUI.Designer.cs">
       <DependentUpon>CaroBoardUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fake.Designer.cs">
+      <DependentUpon>Fake.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CaroBoardUI.resx">
       <DependentUpon>CaroBoardUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fake.resx">
+      <DependentUpon>Fake.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
