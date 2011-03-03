@@ -18,6 +18,7 @@ namespace Caro
         CaroBoard _board;
         bool GameOver = false;
         bool StopTimer = false;
+        AI1 ai;
 #endregion
 
         public CaroBoardUI()
@@ -45,6 +46,7 @@ namespace Caro
             timer1.Start();
             _board.PrevMove.Set(-1, -1);
             _board.CurrMove.Set(-1, -1);
+            ai = new AI1(19);
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -59,14 +61,19 @@ namespace Caro
                     _board.PrevMove.Set(_board.CurrMove);
                     _board.CurrMove.Set(i,j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
+                    char currplayer = _board.XPlaying ? 'o' : 'x';
+                    Position p = ai.Solve(ref _board, currplayer);
+                    Console.WriteLine(p.x + "-" + p.y);
+                    _board.cells[p.x, p.y] = currplayer;
                     GameOver = _board.IsGame0ver;
-                    _board.XPlaying = !_board.XPlaying;
+                    //_board.XPlaying = !_board.XPlaying;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1); 
+                Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new  Rectangle(_board.PrevMove.y * CELL_SIZE, _board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+                rc = new Rectangle(_board.PrevMove.y * CELL_SIZE, _board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
+                Invalidate();
             }
             base.OnMouseDown(e);
         } 

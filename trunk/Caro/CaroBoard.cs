@@ -108,7 +108,7 @@ namespace Caro
                 return false;
             }
         }
-        bool CheckPosition(int x,int y)
+        public bool CheckPosition(int x,int y)
         {
             return (x >= 0 && y >= 0 && x < size && y < size);
         }
@@ -140,6 +140,12 @@ namespace Caro
             }
             return count;
         }
+        //public void Set(CaroBoard b)
+        //{
+        //    for (int i = 0; i < size; i++)
+        //        for (int j = 0; j < size; j++)
+        //            cells[i, j] = b.cells[i, j];
+        //}
         private void New(int n)
         {
             XPlaying = true;
