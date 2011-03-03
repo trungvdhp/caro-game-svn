@@ -48,8 +48,8 @@ namespace Caro
                 else _board.cells[i, j] = ' ';
                 Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE + TopLeft.X, _board.CurrMove.x * CELL_SIZE + TopLeft.Y, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
-                rc = new Rectangle( _board.PrevMove.y * CELL_SIZE + TopLeft.X,_board.PrevMove.x * CELL_SIZE + TopLeft.Y, CELL_SIZE + 1, CELL_SIZE + 1);
-                Invalidate(rc);
+                //rc = new Rectangle( _board.PrevMove.y * CELL_SIZE + TopLeft.X,_board.PrevMove.x * CELL_SIZE + TopLeft.Y, CELL_SIZE + 1, CELL_SIZE + 1);
+                //Invalidate(rc);
                 //Invalidate();
             }
             base.OnMouseDown(e);

@@ -14,7 +14,7 @@ namespace Caro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Fake());
+            Application.Run(new Main());
         }
     }
 }

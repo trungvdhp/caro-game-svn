@@ -20,10 +20,20 @@ namespace Caro
                 for (int j = 0; j < n; j++)
                     Val[i, j] = 0;
         }
-
-        int GetPoint()
+        void Eval(Position p)
         {
 
+        }
+        int GetPoint(CaroBoard b)
+        {
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                {
+                    if(b.cells[i,j]=='o')
+                    {
+
+                    }
+                }
             return 0;
         }
     }
