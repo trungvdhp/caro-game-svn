@@ -17,7 +17,6 @@ namespace Caro
         Image _ImgO;
         CaroBoard _board;
         bool GameOver = false;
-        bool StopTimer = false;
         AI1 ai;
 #endregion
 
@@ -36,14 +35,12 @@ namespace Caro
         public void NewGame(bool defaultFirst)
         {
             GameOver = false;
-            StopTimer = false;
             _board = new CaroBoard(19);
             if (!defaultFirst) _board.XPlaying = !_board.XPlaying;
             this.MaximumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.MinimumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();
-            timer1.Start();
             _board.PrevMove.Set(-1, -1);
             _board.CurrMove.Set(-1, -1);
             ai = new AI1(19);
@@ -51,7 +48,7 @@ namespace Caro
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (!GameOver)
+            if (!GameOver && _board.XPlaying)
             {
                 int i = (int)(e.Y / CELL_SIZE);
                 int j = (int)(e.X / CELL_SIZE);
@@ -59,24 +56,52 @@ namespace Caro
                 if (_board.cells[i, j] == ' ')
                 {
                     _board.PrevMove.Set(_board.CurrMove);
-                    _board.CurrMove.Set(i,j);
+                    _board.CurrMove.Set(i, j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    char currplayer = _board.XPlaying ? 'o' : 'x';
-                    Position p = ai.Solve(ref _board, currplayer);
-                    Console.WriteLine(p.x + "-" + p.y);
-                    _board.cells[p.x, p.y] = currplayer;
-                    GameOver = _board.IsGame0ver;
+                    // GameOver = _board.IsGame0ver;
                     //_board.XPlaying = !_board.XPlaying;
+                    UpdateGraphic(_board.CurrMove);
+                    UpdateGraphic(_board.PrevMove);
+                    SwithchPlayer();
                 }
-                else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
-                Invalidate(rc);
-                rc = new Rectangle(_board.PrevMove.y * CELL_SIZE, _board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
-                Invalidate(rc);
-                Invalidate();
+                else
+                {
+                    _board.cells[i, j] = ' ';
+                    UpdateGraphic(_board.CurrMove);
+                }
+                //Invalidate();
             }
             base.OnMouseDown(e);
         } 
+        private void UpdateGraphic(Position p)
+        {
+            Rectangle rc = new Rectangle(p.y * CELL_SIZE, p.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+            Invalidate(rc);
+        }
+        public void SwithchPlayer()
+        {
+            GameOver = _board.IsGame0ver;
+            _board.XPlaying = !_board.XPlaying;
+            if (GameOver)
+            {
+                if (_board.XPlaying) MessageBox.Show("Quân O thắng.");
+                else MessageBox.Show("Quân X thắng.");
+                return;
+            }
+            
+            if(!_board.XPlaying)
+            {
+                _board.PrevMove.Set(_board.CurrMove);
+                char currplayer = _board.XPlaying ? 'x' : 'o';
+                Position p = ai.Solve(ref _board, currplayer);
+                Console.WriteLine(p.x + "-" + p.y);
+                _board.CurrMove.Set(p);
+                _board.cells[p.x, p.y] = currplayer;
+                UpdateGraphic(p);
+                UpdateGraphic(_board.PrevMove);
+                SwithchPlayer();
+            }
+        }
         protected override void OnPaint(PaintEventArgs e)
         {
             int y = 0,x=0;
@@ -104,17 +129,6 @@ namespace Caro
             e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE, CELL_SIZE));
             base.OnPaint(e);
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (StopTimer) return;
-            if(GameOver)
-            {
-                StopTimer = true;
-                if (_board.XPlaying) MessageBox.Show("Quân O thắng.");
-                else MessageBox.Show("Quân X thắng.");
-                timer1.Stop();
-            }
-        }
     }
 }
+

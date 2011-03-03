@@ -56,8 +56,8 @@ namespace Caro
                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == 'o' && b.cells[rw, cl + 5] == 'o')
                                         Val[rw, cl + i] = 0;
                                 }
-                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw,cl+i-1)&&b.cells[rw, cl + i - 1] == ' ') || b.cells[rw, cl + i + 1] == ' '))
-                                    Val[rw, cl + i] *= 2;
+//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || b.cells[rw, cl + i + 1] == ' '))
+//                                     Val[rw, cl + i] *= 2;
                             }
                 }
             //Luong gia cho cot
@@ -86,11 +86,11 @@ namespace Caro
                                 {
                                     if (Player == 'o') Val[rw+i, cl] += TScore[cX];
                                     else Val[rw+i, cl] += KScore[cX];
-                                    if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl+5] == 'o' && b.cells[rw+5, cl] == 'o')
+                                    if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl] == 'o' && b.cells[rw+5, cl] == 'o')
                                         Val[rw+i, cl] = 0;
                                 }
-                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw+i-1,cl)&&b.cells[rw+i-1, cl] == ' ') || b.cells[rw+i+1, cl] == ' '))
-                                    Val[rw+i, cl] *= 2;
+//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw+i-1,cl)&&b.cells[rw+i-1, cl] == ' ') || b.cells[rw+i+1, cl] == ' '))
+//                                     Val[rw+i, cl] *= 2;
                             }
                 }
             //Duong cheo xuong
@@ -122,8 +122,8 @@ namespace Caro
                                     if (b.CheckPosition(rw - 1, cl-1) && b.CheckPosition(rw + 5, cl+5) && b.cells[rw - 1, cl -1] == 'o' && b.cells[rw + 5, cl+5] == 'o')
                                         Val[rw + i, cl+i] = 0;
                                 }
-                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw + i - 1, cl+i-1) && b.cells[rw + i - 1, cl+i-1] == ' ') || (b.CheckPosition(rw + i + 1, cl+i+1) && b.cells[rw + i + 1, cl+i+1] == ' ')))
-                                    Val[rw + i, cl+i] *= 2;
+//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw + i - 1, cl+i-1) && b.cells[rw + i - 1, cl+i-1] == ' ') || (b.CheckPosition(rw + i + 1, cl+i+1) && b.cells[rw + i + 1, cl+i+1] == ' ')))
+//                                     Val[rw + i, cl+i] *= 2;
                             }
                 }
             //Duong cheo len
@@ -155,8 +155,8 @@ namespace Caro
                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == 'o' && b.cells[rw - 5, cl + 5] == 'o')
                                         Val[rw + i, cl + i] = 0;
                                 }
-                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
-                                    Val[rw - i, cl + i] *= 2;
+//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
+//                                     Val[rw - i, cl + i] *= 2;
                             }
                 }
             EchoVal();
@@ -164,14 +164,24 @@ namespace Caro
         }
         void EchoVal()
         {
+            Console.Clear();
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    Console.Write(Val[i, j] + " ");
+                    
+                    Console.Write("{0}{1}",Val[i, j],Space(Val[i,j]));
                 }
                 Console.WriteLine();
             }
+        }
+        string Space(int x)
+        {
+            int k = x.ToString().Length;
+            string r = "";
+            for (int i = 0; i < 4-k; i++)
+                r += " ";
+            return r;
         }
         public Position Solve(ref CaroBoard b, char Player )
         {
