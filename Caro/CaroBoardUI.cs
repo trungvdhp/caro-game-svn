@@ -59,13 +59,13 @@ namespace Caro
                     _board.PrevMove.Set(_board.CurrMove);
                     _board.CurrMove.Set(i,j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    GameOver = _board.IsGameOver;
+                    GameOver = _board.IsGame0ver;
                     _board.XPlaying = !_board.XPlaying;
                 }
                 else _board.cells[i, j] = ' ';
-                Rectangle rc = new Rectangle(_board.PrevMove.y * CELL_SIZE,_board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+                Rectangle rc = new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1); 
                 Invalidate(rc);
-                rc = new Rectangle(_board.CurrMove.y * CELL_SIZE,_board.CurrMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+                rc = new  Rectangle(_board.PrevMove.y * CELL_SIZE, _board.PrevMove.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
                 Invalidate(rc);
             }
             base.OnMouseDown(e);
@@ -91,7 +91,10 @@ namespace Caro
             }
             e.Graphics.DrawLine(Pens.Black, 0, x, this.Height, x);
             e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
-            e.Graphics.DrawRectangle(Pens.Red,new Rectangle(_board.CurrMove.x*CELL_SIZE,_board.CurrMove.y*CELL_SIZE,CELL_SIZE,CELL_SIZE));
+            Pen p;
+            if (!_board.XPlaying) p = Pens.Red;
+            else p = Pens.DarkViolet;
+            e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE, CELL_SIZE));
             base.OnPaint(e);
         }
 
