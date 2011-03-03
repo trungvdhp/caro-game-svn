@@ -17,12 +17,12 @@ namespace Caro
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(@"D:\Tutorials\Examples\sgomoku\index.html");
+            webBrowser1.Navigate(Application.StartupPath+@"\sgomoku\index.html");
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(@"D:\Tutorials\Examples\sgomoku\index.html");
+            webBrowser1.Navigate(Application.StartupPath+@"\sgomoku\index.html");
         }
     }
 }
