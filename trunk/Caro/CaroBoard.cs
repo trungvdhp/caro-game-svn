@@ -21,34 +21,25 @@ namespace Caro
         {
             x = a; y = b;
         }
-        
     }
     class CaroBoard
     {
         public char[,] cells;
         public bool XPlaying;
         public int size { get; private set; }
-        private int[] dx = { 0, 1, -1, 1 };
-        private int[] dy = { 1, 0, 1, 1 };
+        private int[] dx = { 0, 1, -1, 1, 0, -1, 1, -1 };
+        private int[] dy = { 1, 0, 1, 1, -1, 0, -1, -1 };
         public Position PrevMove = new Position(-1,-1);
         public Position CurrMove = new Position(-1,-1);
-        /// <summary>
-        /// THuộc tính kiểm tra GameOver theo phương pháp kiểm tra 5 quân liên tiếp với từng quân
-        /// </summary>
+        
         public bool IsGameOver
         {
             get
             {
-                //for (int i = 0; i < size; i++)
-                //    for (int j = 0; j < size; j++)
-                //        if (cells[i, j] == 'x' || cells[i, j] == 'o')
-                //            if (Check5Row(i, j, 1, 4) >= 5)
-                //                return true;
-                //return false;
                 char CurrPlayer = XPlaying?'x':'o';
                 int count=1;
                 bool next=true,prev=true;
-                Console.WriteLine("{0}-{1}:\n", CurrMove.x, CurrMove.y);
+                Console.WriteLine("Move {0}-{1}", CurrMove.x, CurrMove.y);
                 for (int i = 1; i < 5; i++)
                 {
                     if (CurrMove.x + i < size && cells[CurrMove.x + i, CurrMove.y] == CurrPlayer && next)
@@ -107,6 +98,20 @@ namespace Caro
 
             }
         }
+        public bool IsGame0ver
+        {
+            get
+            {
+                char CurrPlayer = XPlaying ? 'x' : 'o';
+                for (int i = 0; i < 4; i++)
+                    if (Check5Row(CurrMove.x, CurrMove.y, i, CurrPlayer) >= 5) return true;
+                return false;
+            }
+        }
+        bool CheckPosition(int x,int y)
+        {
+            return (x >= 0 && y >= 0 && x < size && y < size);
+        }
         /// <summary>
         /// Hàm đếm số quân liên kết với 1 quân
         /// </summary>
@@ -115,28 +120,25 @@ namespace Caro
         /// <param name="count"></param>
         /// <param name="type">Kiểu đi</param>
         /// <returns>Số quân cờ liên kết</returns>
-        public int Check5Row(int x,int y,int count,int type)
+        public int Check5Row(int x,int y,int type,char CurrPlayer)
         {
-            if (type == 4)
+            bool next = true, prev = true;
+            int count = 1;
+            int u, v;
+            for(int i=1;i<5;i++)
             {
-                int max=0;
-                for(int i=0;i<4;i++)
-                {
-                    int u=x+dx[i];
-                    int v=y+dy[i];
-                    if (u >= 0 && v >= 0 & u < size && v < size && cells[u, v] == cells[x, y])
-                        max = Math.Max(max, Check5Row(u, v, count + 1, i));
-                }
-                return max;
+                u = x + i * dx[type];
+                v = y + i * dy[type];
+                if (CheckPosition(u, v) && cells[u, v] == CurrPlayer && next)
+                    count++;
+                else next = false;
+                u = x + i * dx[type + 4];
+                v = y + i * dy[type + 4];
+                if (CheckPosition(u, v) && cells[u, v] == CurrPlayer && prev)
+                    count++;
+                else prev = false;
             }
-            else
-            {
-                int u = x + dx[type];
-                int v = y + dy[type];
-                if (u >= 0 && v >= 0 & u < size && v < size && cells[u, v] == cells[x, y])
-                    return Check5Row(u, v, count + 1, type);
-                return count;
-            }
+            return count;
         }
         private void New(int n)
         {
