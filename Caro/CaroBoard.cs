@@ -9,6 +9,10 @@ namespace Caro
     {
         public int x;
         public int y;
+        public Position()
+        {
+
+        }
         public void Set(Position p)
         {
             x = p.x;y=p.y;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace Caro
 {
@@ -27,7 +28,6 @@ namespace Caro
             ResetVal();
             int rw, cl, i;
             int cX, cO;
-            //Luong gia cho hang
             for(rw=0;rw<n;rw++)
                 for(cl=0;cl<n-4;cl++)
                 {
@@ -37,7 +37,6 @@ namespace Caro
                         if (b.cells[rw, cl + i] == 'x') cX++;
                         if (b.cells[rw, cl + i] == 'o') cO++;
                     }
-                    //Luong gia..
                     if(cX*cO==0&&cX!=cO)
                         for(i=0;i<5;i++)
                             if(b.cells[rw,cl+i]==' ')
@@ -46,21 +45,20 @@ namespace Caro
                                 {
                                     if (Player == 'x') Val[rw, cl + i] += TScore[cO];
                                     else Val[rw, cl + i] += KScore[cO];
-                                    if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == 'x' && b.cells[rw, cl + 5] == 'x')
-                                        Val[rw, cl + i] = 0;
+//                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == 'x' && b.cells[rw, cl + 5] == 'x')
+//                                         Val[rw, cl + i] = 0;
                                 }
                                 if (cO == 0)
                                 {
                                     if (Player == 'o') Val[rw, cl + i] += TScore[cX];
                                     else Val[rw, cl + i] += KScore[cX];
-                                    if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == 'o' && b.cells[rw, cl + 5] == 'o')
-                                        Val[rw, cl + i] = 0;
+//                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == 'o' && b.cells[rw, cl + 5] == 'o')
+//                                         Val[rw, cl + i] = 0;
                                 }
-//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || b.cells[rw, cl + i + 1] == ' '))
-//                                     Val[rw, cl + i] *= 2;
+                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || b.cells[rw, cl + i + 1] == ' '))
+                                    Val[rw, cl + i] *= 2;
                             }
                 }
-            //Luong gia cho cot
             for (rw = 0; rw < n-4; rw++)
                 for (cl = 0; cl < n; cl++)
                 {
@@ -70,7 +68,6 @@ namespace Caro
                         if (b.cells[rw+i, cl] == 'x') cX++;
                         if (b.cells[rw+i, cl] == 'o') cO++;
                     }
-                    //Luong gia..
                     if (cX * cO == 0 && cX != cO)
                         for (i = 0; i < 5; i++)
                             if (b.cells[rw+i, cl] == ' ')
@@ -79,18 +76,18 @@ namespace Caro
                                 {
                                     if (Player == 'x') Val[rw+i, cl] += TScore[cO];
                                     else Val[rw+i, cl] += KScore[cO];
-                                    if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl] == 'x' && b.cells[rw+5, cl] == 'x')
-                                        Val[rw+i, cl] = 0;
+//                                     if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl] == 'x' && b.cells[rw+5, cl] == 'x')
+//                                         Val[rw+i, cl] = 0;
                                 }
                                 if (cO == 0)
                                 {
                                     if (Player == 'o') Val[rw+i, cl] += TScore[cX];
                                     else Val[rw+i, cl] += KScore[cX];
-                                    if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl] == 'o' && b.cells[rw+5, cl] == 'o')
-                                        Val[rw+i, cl] = 0;
+//                                     if (b.CheckPosition(rw-1, cl) && b.CheckPosition(rw+5, cl) && b.cells[rw-1, cl] == 'o' && b.cells[rw+5, cl] == 'o')
+//                                         Val[rw+i, cl] = 0;
                                 }
-//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw+i-1,cl)&&b.cells[rw+i-1, cl] == ' ') || b.cells[rw+i+1, cl] == ' '))
-//                                     Val[rw+i, cl] *= 2;
+                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw+i-1,cl)&&b.cells[rw+i-1, cl] == ' ') || b.cells[rw+i+1, cl] == ' '))
+                                    Val[rw+i, cl] *= 2;
                             }
                 }
             //Duong cheo xuong
@@ -112,18 +109,18 @@ namespace Caro
                                 {
                                     if (Player == 'x') Val[rw + i, cl+i] += TScore[cO];
                                     else Val[rw + i, cl+i] += KScore[cO];
-                                    if (b.CheckPosition(rw - 1, cl-1) && b.CheckPosition(rw + 5, cl+5) && b.cells[rw - 1, cl-1] == 'x' && b.cells[rw + 5, cl+5] == 'x')
-                                        Val[rw + i, cl+i] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl-1) && b.CheckPosition(rw + 5, cl+5) && b.cells[rw - 1, cl-1] == 'x' && b.cells[rw + 5, cl+5] == 'x')
+//                                         Val[rw + i, cl+i] = 0;
                                 }
                                 if (cO == 0)
                                 {
                                     if (Player == 'o') Val[rw + i, cl+i] += TScore[cX];
                                     else Val[rw + i, cl+i] += KScore[cX];
-                                    if (b.CheckPosition(rw - 1, cl-1) && b.CheckPosition(rw + 5, cl+5) && b.cells[rw - 1, cl -1] == 'o' && b.cells[rw + 5, cl+5] == 'o')
-                                        Val[rw + i, cl+i] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl-1) && b.CheckPosition(rw + 5, cl+5) && b.cells[rw - 1, cl -1] == 'o' && b.cells[rw + 5, cl+5] == 'o')
+//                                         Val[rw + i, cl+i] = 0;
                                 }
-//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw + i - 1, cl+i-1) && b.cells[rw + i - 1, cl+i-1] == ' ') || (b.CheckPosition(rw + i + 1, cl+i+1) && b.cells[rw + i + 1, cl+i+1] == ' ')))
-//                                     Val[rw + i, cl+i] *= 2;
+                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw + i - 1, cl+i-1) && b.cells[rw + i - 1, cl+i-1] == ' ') || (b.CheckPosition(rw + i + 1, cl+i+1) && b.cells[rw + i + 1, cl+i+1] == ' ')))
+                                    Val[rw + i, cl+i] *= 2;
                             }
                 }
             //Duong cheo len
@@ -145,18 +142,18 @@ namespace Caro
                                 {
                                     if (Player == 'x') Val[rw - i, cl + i] += TScore[cO];
                                     else Val[rw - i, cl + i] += KScore[cO];
-                                    if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == 'x' && b.cells[rw - 5, cl + 5] == 'x')
-                                        Val[rw - i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == 'x' && b.cells[rw - 5, cl + 5] == 'x')
+//                                         Val[rw - i, cl + i] = 0;
                                 }
                                 if (cO == 0)
                                 {
                                     if (Player == 'o') Val[rw - i, cl + i] += TScore[cX];
                                     else Val[rw - i, cl + i] += KScore[cX];
-                                    if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == 'o' && b.cells[rw - 5, cl + 5] == 'o')
-                                        Val[rw + i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == 'o' && b.cells[rw - 5, cl + 5] == 'o')
+//                                         Val[rw + i, cl + i] = 0;
                                 }
-//                                 if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
-//                                     Val[rw - i, cl + i] *= 2;
+                                if ((cX == 4 || cO == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
+                                    Val[rw - i, cl + i] *= 2;
                             }
                 }
             EchoVal();
@@ -172,7 +169,7 @@ namespace Caro
                     
                     Console.Write("{0}{1}",Val[i, j],Space(Val[i,j]));
                 }
-                Console.WriteLine();
+                Console.WriteLine("\n");
             }
         }
         string Space(int x)
@@ -186,6 +183,7 @@ namespace Caro
         public Position Solve(ref CaroBoard b, char Player )
         {
             EvalueCaroBoard(ref b, Player);
+            
             int MaxP=0;
             Position p = new Position(b.size / 2, b.size / 2);
             for(int i=0;i<n;i++)
