@@ -43,7 +43,10 @@ namespace Caro
             Invalidate();
             _board.PrevMove.Set(-1, -1);
             _board.CurrMove.Set(-1, -1);
-            ai = new AI1(19);
+            //_board.CurrMove.Set(_board.size / 2, _board.size / 2);
+            //_board.cells[_board.size / 2, _board.size / 2] = 'o';
+            //_board.XPlaying = false;
+            ai = new AI1(19,'o');
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
