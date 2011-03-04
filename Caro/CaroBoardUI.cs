@@ -11,15 +11,14 @@ namespace Caro
     public partial class CaroBoardUI : UserControl
     {
         //public event EventHandler CellClick;
-#region properties
+        #region properties
         const int CELL_SIZE = 25;
         Image _ImgX;
         Image _ImgO;
         CaroBoard _board;
         bool GameOver = false;
         AI1 ai;
-#endregion
-
+        #endregion
         public CaroBoardUI()
         {
             InitializeComponent();
@@ -72,10 +71,23 @@ namespace Caro
                     _board.cells[i, j] = ' ';
                     UpdateGraphic(_board.CurrMove);
                 }
-                //Invalidate();
+                Invalidate();
             }
             base.OnMouseDown(e);
         } 
+        private void EchoBoard()
+        {
+            Console.Clear();
+            for (int i = 0; i < _board.size; i++)
+            {
+                for (int j = 0; j < _board.size; j++)
+                {
+                    
+                    Console.Write("{0} ",_board.cells[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
         private void UpdateGraphic(Position p)
         {
             Rectangle rc = new Rectangle(p.y * CELL_SIZE, p.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
@@ -83,6 +95,7 @@ namespace Caro
         }
         public void SwithchPlayer()
         {
+            EchoBoard();
             GameOver = _board.IsGame0ver;
             _board.XPlaying = !_board.XPlaying;
             if (GameOver)
