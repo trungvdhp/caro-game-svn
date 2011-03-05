@@ -29,7 +29,7 @@ namespace Caro
         char _computer;
         char _player;
         int _branch;
-        const int MAX_INT = 2147483647;
+        const int INT_MAX = 2147483647;
         public char computer
         {
             get{
@@ -55,7 +55,7 @@ namespace Caro
             this.computer = computer;
             Val = new int[n, n];
             _branch = 8;
-            maxdepth = 2;
+            maxdepth = 3;
         }
         public void EvalueCaroBoard(ref CaroBoard b,char Player)
         {
@@ -204,7 +204,7 @@ namespace Caro
                 for (int j = 0; j < n; j++)
                 {
                     
-                    Console.Write("{0}{1}",Val[i, j],Space(Val[i,j]));
+                    Console.Write("{0} ",Val[i, j]);
                 }
                 Console.WriteLine("\n");
             }
@@ -213,16 +213,22 @@ namespace Caro
         {
             int k = x.ToString().Length;
             string r = "";
+            //if (x < 0) k += 1;
             for (int i = 0; i < 4-k; i++)
                 r += " ";
             return r;
         }
         private State GetMaxNode()
         {
-            Position p=new Position(0,0);            
+            Position p=new Position(0,0);
+            int t = -INT_MAX;
             for(int i=0;i<n;i++)
                 for(int j=0;j<n;j++)
-                    if (Val[p.x, p.y] < Val[i, j]) p.Set(i, j);
+                    if (t < Val[i, j])
+                    {
+                        t = Val[i, j];
+                        p.Set(i, j);
+                    }
             State s=new State(p,Val[p.x,p.y]);
             Val[p.x, p.y] = 0;
             return s;
@@ -230,9 +236,14 @@ namespace Caro
         private State GetMinNode()
         {
             Position p = new Position(0, 0);
+            int t = INT_MAX;
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++)
-                    if (Val[p.x, p.y] > Val[i, j]) p.Set(i, j);
+                    if (t > Val[i, j])
+                    {
+                        t = Val[i, j];
+                        p.Set(i, j);
+                    }
             State s = new State(p, Val[p.x, p.y]);
             Val[p.x, p.y] = 0;
             return s;
@@ -244,12 +255,12 @@ namespace Caro
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
                 list.Add(GetMaxNode());
-            int maxp = -MAX_INT;
+            int maxp = -INT_MAX;
 
             for (int i = 0; i < _branch;i++ )
             {
                 b.cells[list[i].p.x, list[i].p.y] = _computer;
-                int t=MinVal(ref b, list[i], -MAX_INT, MAX_INT,0);
+                int t=MinVal(ref b, list[i], -INT_MAX, INT_MAX,0);
                 if (maxp < t) 
                 {
                     maxp=t;
@@ -262,7 +273,7 @@ namespace Caro
         }
         private int MaxVal(ref CaroBoard b,State s,int alpha, int beta, int depth)
         {
-            if (s.val >= KScore[4] || depth>maxdepth) return s.val;
+            if (s.val >= KScore[4] || depth>=maxdepth) return s.val;
             EvalueCaroBoard(ref b,_computer);
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
@@ -270,7 +281,7 @@ namespace Caro
             for(int i=0;i<_branch;i++)
             {
                 b.cells[list[i].p.x, list[i].p.y] = _computer;
-                alpha = Math.Max(alpha, MinVal(ref b, list[i], alpha, beta, depth + 1));
+                alpha = Math.Max(alpha, s.val+MinVal(ref b, list[i], alpha, beta, depth + 1));
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
                 if (alpha > beta) break;
             }
@@ -278,7 +289,7 @@ namespace Caro
         }
         private int MinVal(ref CaroBoard b, State s, int alpha, int beta, int depth)
         {
-            if (s.val <= -KScore[4] || depth > maxdepth) return s.val;
+            if (s.val <= -KScore[4] || depth >=maxdepth) return s.val;
             EvalueCaroBoard(ref b, _player);
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
@@ -286,7 +297,7 @@ namespace Caro
             for (int i = 0; i < _branch; i++)
             {
                 b.cells[list[i].p.x, list[i].p.y] = _player;
-                beta = Math.Min(beta, MaxVal(ref b, list[i], alpha, beta, depth + 1));
+                beta = Math.Min(beta, s.val+MaxVal(ref b, list[i], alpha, beta, depth + 1));
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
                 if (alpha >= beta) break;
             }
