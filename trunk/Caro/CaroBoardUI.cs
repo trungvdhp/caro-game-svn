@@ -71,7 +71,7 @@ namespace Caro
                     _board.cells[i, j] = ' ';
                     UpdateGraphic(_board.CurrMove);
                 }
-                Invalidate();
+                //Invalidate();
             }
             base.OnMouseDown(e);
         } 
@@ -95,7 +95,7 @@ namespace Caro
         }
         public void SwithchPlayer()
         {
-            EchoBoard();
+            //EchoBoard();
             GameOver = _board.IsGame0ver;
             _board.XPlaying = !_board.XPlaying;
             if (GameOver)
