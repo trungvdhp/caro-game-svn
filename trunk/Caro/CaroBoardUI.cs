@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Caro
 {
@@ -45,7 +46,8 @@ namespace Caro
             //_board.CurrMove.Set(_board.size / 2, _board.size / 2);
             //_board.cells[_board.size / 2, _board.size / 2] = 'o';
             //_board.XPlaying = false;
-            ai = new AI1(19,'o');
+            //SwithchPlayer();
+            ai = new AI1(19, 'o');
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -107,16 +109,21 @@ namespace Caro
             
             if(!_board.XPlaying)
             {
-                _board.PrevMove.Set(_board.CurrMove);
-                char currplayer = _board.XPlaying ? 'x' : 'o';
-                Position p = ai.Solve(ref _board, currplayer);
-                Console.WriteLine(p.x + "-" + p.y);
-                _board.CurrMove.Set(p);
-                _board.cells[p.x, p.y] = currplayer;
-                UpdateGraphic(p);
-                UpdateGraphic(_board.PrevMove);
-                SwithchPlayer();
+                Thread th = new Thread(Computer);
+                th.Start();
             }
+        }
+        public void Computer()
+        {
+            _board.PrevMove.Set(_board.CurrMove);
+            char currplayer = _board.XPlaying ? 'x' : 'o';
+            Position p = ai.Solve(ref _board, currplayer);
+            Console.WriteLine(p.x + "-" + p.y);
+            _board.CurrMove.Set(p);
+            _board.cells[p.x, p.y] = currplayer;
+            UpdateGraphic(p);
+            UpdateGraphic(_board.PrevMove);
+            SwithchPlayer();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
