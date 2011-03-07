@@ -11,7 +11,6 @@ namespace Caro
         public int y;
         public Position()
         {
-
         }
         public void Set(Position p)
         {
