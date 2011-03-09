@@ -43,10 +43,10 @@ namespace Caro
             Invalidate();
             _board.PrevMove.Set(-1, -1);
             _board.CurrMove.Set(-1, -1);
-            //_board.CurrMove.Set(_board.size / 2, _board.size / 2);
-            //_board.cells[_board.size / 2, _board.size / 2] = 'o';
-            //_board.XPlaying = false;
-            //SwithchPlayer();
+            _board.CurrMove.Set(_board.size / 2, _board.size / 2);
+            _board.cells[_board.size / 2, _board.size / 2] = 'o';
+            _board.XPlaying = false;
+            SwithchPlayer();
             ai = new AI1(19, 'o');
             
         }
