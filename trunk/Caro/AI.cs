@@ -12,23 +12,23 @@ namespace Caro
         public State(Position p, int val)
         {
             this.p = new Position();
-            this.p = p;
+            this.p.x = p.x;
+            this.p.y = p.y;
             this.val = val;
         }
         public void Set(Position p, int val)
         {
             this.p = new Position();
-            this.p = p;
+            this.p.x = p.x;
+            this.p.y = p.y;
             this.val = val;
         }
     }
     class AI
     {
         int n;
-        int[] TScore = { 0, 1, 9, 85, 769};//Diem cho duong thang
-        int[] KScore = { 0, 2, 28, 256, 2308};
-        int[] TScoreC = { 0, 3, 12, 90, 800 };//Diem cho duong cheo
-        int[] KScoreC = { 0, 4, 15, 300, 2400 };
+        int[] TScore = { 0, 1, 9, 85, 769 };
+        int[] KScore = { 0, 2, 28, 256, 2308 };
         int[,] Val;
         private int maxdepth;
         char _computer;
@@ -151,15 +151,15 @@ namespace Caro
                             {
                                 if (cComputer == 0)
                                 {
-                                    if (Player == _computer) Val[rw + i, cl + i] += TScoreC[cPlayer];
-                                    else Val[rw + i, cl + i] += KScoreC[cPlayer];
+                                    if (Player == _computer) Val[rw + i, cl + i] += TScore[cPlayer];
+                                    else Val[rw + i, cl + i] += KScore[cPlayer];
 //                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _computer && b.cells[rw + 5, cl + 5] == _computer)
 //                                         Val[rw + i, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
-                                    if (Player == _player) Val[rw + i, cl + i] += TScoreC[cComputer];
-                                    else Val[rw + i, cl + i] += KScoreC[cComputer];
+                                    if (Player == _player) Val[rw + i, cl + i] += TScore[cComputer];
+                                    else Val[rw + i, cl + i] += KScore[cComputer];
 //                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _player && b.cells[rw + 5, cl + 5] == _player)
 //                                         Val[rw + i, cl + i] = 0;
                                 }
@@ -185,16 +185,16 @@ namespace Caro
                                 if (cComputer == 0)
                                 {
                                     //Val[rw + i, cl + i] += 2;
-                                    if (Player == _computer) Val[rw - i, cl + i] += TScoreC[cPlayer];
-                                    else Val[rw - i, cl + i] += KScoreC[cPlayer];
+                                    if (Player == _computer) Val[rw - i, cl + i] += TScore[cPlayer];
+                                    else Val[rw - i, cl + i] += KScore[cPlayer];
 //                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _computer && b.cells[rw - 5, cl + 5] == _computer)
 //                                         Val[rw - i, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
                                     //Val[rw + i, cl + i] += 2;
-                                    if (Player == _player) Val[rw - i, cl + i] += TScoreC[cComputer];
-                                    else Val[rw - i, cl + i] += KScoreC[cComputer];
+                                    if (Player == _player) Val[rw - i, cl + i] += TScore[cComputer];
+                                    else Val[rw - i, cl + i] += KScore[cComputer];
 //                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _player && b.cells[rw - 5, cl + 5] == _player)
 //                                         Val[rw + i, cl + i] = 0;
                                 }
@@ -317,12 +317,11 @@ namespace Caro
             Console.WriteLine("Current P={0}", Eval(ref b));
             computer = Player;
             EvalueCaroBoard(ref b, _computer);
-            Position p = new Position(b.size / 2, b.size / 2);
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
                 list.Add(GetMaxNode());
             int maxp = -INT_MAX;
-
+            List<State> ListChoose = new List<State>();
             for (int i = 0; i < _branch; i++)
             {
                 b.cells[list[i].p.x, list[i].p.y] = _computer;
@@ -331,12 +330,15 @@ namespace Caro
                 if (maxp < t)
                 {
                     maxp = t;
-                    p.Set(list[i].p);
+                    ListChoose.Clear();
+                    ListChoose.Add(list[i]);
+                }else if(maxp==t)
+                {
+                    ListChoose.Add(list[i]);
                 }
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
             }
-            //p.Set(list[0].p);
-            return p;
+            return ListChoose[new Random().Next(0,ListChoose.Count)].p;
         }
         private int MaxVal(ref CaroBoard b, State s, int alpha, int beta, int depth)
         {

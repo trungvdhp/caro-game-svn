@@ -161,10 +161,12 @@
             // 
             this.op_trackComputerLevel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.op_trackComputerLevel.Location = new System.Drawing.Point(-84, 13);
-            this.op_trackComputerLevel.Maximum = 6;
+            this.op_trackComputerLevel.Maximum = 20;
+            this.op_trackComputerLevel.Minimum = 1;
             this.op_trackComputerLevel.Name = "op_trackComputerLevel";
             this.op_trackComputerLevel.Size = new System.Drawing.Size(83, 45);
             this.op_trackComputerLevel.TabIndex = 3;
+            this.op_trackComputerLevel.Value = 1;
             // 
             // op_comboPlayerSymbol
             // 
@@ -213,13 +215,12 @@
             // 
             // board
             // 
-            this.board.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.board.BackColor = System.Drawing.Color.LemonChiffon;
-            this.board.Location = new System.Drawing.Point(12, 38);
-            this.board.MaximumSize = new System.Drawing.Size(475, 475);
-            this.board.MinimumSize = new System.Drawing.Size(475, 475);
+            this.board.Location = new System.Drawing.Point(12, 37);
+            this.board.MaximumSize = new System.Drawing.Size(476, 476);
+            this.board.MinimumSize = new System.Drawing.Size(476, 476);
             this.board.Name = "board";
-            this.board.Size = new System.Drawing.Size(475, 475);
+            this.board.Size = new System.Drawing.Size(476, 476);
             this.board.TabIndex = 0;
             // 
             // Main
@@ -227,10 +228,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 525);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.board);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(10, 10);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Main";

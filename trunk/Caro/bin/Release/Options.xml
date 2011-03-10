@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Options>
+    <C>op_trackComputerLevel</C>
+    <V>3</V>
+  </Options>
+  <Options>
+    <C>op_comboBox2</C>
+    <V>X</V>
+  </Options>
+  <Options>
+    <C>op_comboGameLaw</C>
+    <V>Gomoku</V>
+  </Options>
+  <Options>
+    <C>op_comboFirstPlayer</C>
+    <V>Player</V>
+  </Options>
+</DocumentElement>

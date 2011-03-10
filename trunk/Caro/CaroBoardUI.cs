@@ -24,7 +24,7 @@ namespace Caro
         public bool processing
         {
             get{
-                return PlayerSymbol != _board.CurrentPlayer;
+                return PlayerSymbol != _board.CurrentPlayer&&!GameOver;
             }
         }
         #endregion
@@ -43,7 +43,7 @@ namespace Caro
         /// <param name="playerFirst">Người đi trước</param>
         /// <param name="playerSymbol">Quân người chơi (x-o)</param>
         /// <param name="conputerAI">Độ sâu khi máy tính toán</param>
-        public void NewGame(bool playerFirst, char playerSymbol, int conputerAI)
+        public void NewGame(bool playerFirst, char playerSymbol, int computerAI)
         {
             GameOver = false;
             PlayerSymbol = playerSymbol=='x'?'x':'o';
@@ -65,7 +65,7 @@ namespace Caro
             this.MinimumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
             Invalidate();            
-            ai = new AI(19, 4);
+            ai = new AI(19, computerAI);
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -84,11 +84,11 @@ namespace Caro
                     UpdateGraphic(_board.PrevMove);
                     SwithchPlayer();
                 }
-                else
-                {
-                    _board.cells[i, j] = ' ';
-                    UpdateGraphic(_board.CurrMove);
-                }
+//                 else
+//                 {
+//                     _board.cells[i, j] = ' ';
+//                     UpdateGraphic(_board.CurrMove);
+//                 }
                 //Invalidate();
             }
             base.OnMouseDown(e);

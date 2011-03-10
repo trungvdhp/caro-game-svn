@@ -96,15 +96,17 @@
             this.labelTrackbar.Name = "labelTrackbar";
             this.labelTrackbar.Size = new System.Drawing.Size(13, 13);
             this.labelTrackbar.TabIndex = 4;
-            this.labelTrackbar.Text = "0";
+            this.labelTrackbar.Text = "1";
             // 
             // op_trackComputerLevel
             // 
             this.op_trackComputerLevel.Location = new System.Drawing.Point(280, 46);
             this.op_trackComputerLevel.Maximum = 6;
+            this.op_trackComputerLevel.Minimum = 1;
             this.op_trackComputerLevel.Name = "op_trackComputerLevel";
             this.op_trackComputerLevel.Size = new System.Drawing.Size(83, 45);
             this.op_trackComputerLevel.TabIndex = 3;
+            this.op_trackComputerLevel.Value = 1;
             this.op_trackComputerLevel.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label3

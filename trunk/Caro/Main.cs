@@ -103,9 +103,12 @@ namespace Caro
                 char playerSymbol = op_comboPlayerSymbol.Text == "X" ? 'x' : 'o';
                 int level = op_trackComputerLevel.Value;
                 board.NewGame(playerFirst, playerSymbol, level);
+                //MessageBox.Show("hi");
+
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 board.NewGame(true, 'x', 3);
             }
             timer1.Start();
