@@ -62,7 +62,7 @@ namespace Caro
             // this.computer = computer;
             Val = new int[n, n];
             _branch = 3;
-            maxdepth = 0;// ai;
+            maxdepth = ai;
         }
         public void EvalueCaroBoard(ref CaroBoard b, char Player)
         {
@@ -88,15 +88,15 @@ namespace Caro
                                 {
                                     if (Player == _computer) Val[rw, cl + i] += TScore[cPlayer];
                                     else Val[rw, cl + i] += KScore[cPlayer];
-                                    if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == _computer && b.cells[rw, cl + 5] == _computer)
-                                        Val[rw, cl + i] = 0;
+//                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == _computer && b.cells[rw, cl + 5] == _computer)
+//                                         Val[rw, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
                                     if (Player == _player) Val[rw, cl + i] += TScore[cComputer];
                                     else Val[rw, cl + i] += KScore[cComputer];
-                                    if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == _player && b.cells[rw, cl + 5] == _player)
-                                        Val[rw, cl + i] = 0;
+//                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == _player && b.cells[rw, cl + 5] == _player)
+//                                         Val[rw, cl + i] = 0;
                                 }
                                 if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || (b.CheckPosition(rw, cl + i + 1) && b.cells[rw, cl + i + 1] == ' ')))
                                     Val[rw, cl + i] *= 2;
@@ -120,15 +120,15 @@ namespace Caro
                                 {
                                     if (Player == _computer) Val[rw + i, cl] += TScore[cPlayer];
                                     else Val[rw + i, cl] += KScore[cPlayer];
-                                    if (b.CheckPosition(rw - 1, cl) && b.CheckPosition(rw + 5, cl) && b.cells[rw - 1, cl] == _computer && b.cells[rw + 5, cl] == _computer)
-                                        Val[rw + i, cl] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl) && b.CheckPosition(rw + 5, cl) && b.cells[rw - 1, cl] == _computer && b.cells[rw + 5, cl] == _computer)
+//                                         Val[rw + i, cl] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
                                     if (Player == _player) Val[rw + i, cl] += TScore[cComputer];
                                     else Val[rw + i, cl] += KScore[cComputer];
-                                    if (b.CheckPosition(rw - 1, cl) && b.CheckPosition(rw + 5, cl) && b.cells[rw - 1, cl] == _player && b.cells[rw + 5, cl] == _player)
-                                        Val[rw + i, cl] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl) && b.CheckPosition(rw + 5, cl) && b.cells[rw - 1, cl] == _player && b.cells[rw + 5, cl] == _player)
+//                                         Val[rw + i, cl] = 0;
                                 }
                                 if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl) && b.cells[rw + i - 1, cl] == ' ') || (b.CheckPosition(rw + i + 1, cl) && b.cells[rw + i + 1, cl] == ' ')))
                                     Val[rw + i, cl] *= 2;
@@ -153,15 +153,15 @@ namespace Caro
                                 {
                                     if (Player == _computer) Val[rw + i, cl + i] += TScoreC[cPlayer];
                                     else Val[rw + i, cl + i] += KScoreC[cPlayer];
-                                    if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _computer && b.cells[rw + 5, cl + 5] == _computer)
-                                        Val[rw + i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _computer && b.cells[rw + 5, cl + 5] == _computer)
+//                                         Val[rw + i, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
                                     if (Player == _player) Val[rw + i, cl + i] += TScoreC[cComputer];
                                     else Val[rw + i, cl + i] += KScoreC[cComputer];
-                                    if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _player && b.cells[rw + 5, cl + 5] == _player)
-                                        Val[rw + i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _player && b.cells[rw + 5, cl + 5] == _player)
+//                                         Val[rw + i, cl + i] = 0;
                                 }
                                 if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl + i - 1) && b.cells[rw + i - 1, cl + i - 1] == ' ') || (b.CheckPosition(rw + i + 1, cl + i + 1) && b.cells[rw + i + 1, cl + i + 1] == ' ')))
                                     Val[rw + i, cl + i] *= 2;
@@ -187,16 +187,16 @@ namespace Caro
                                     //Val[rw + i, cl + i] += 2;
                                     if (Player == _computer) Val[rw - i, cl + i] += TScoreC[cPlayer];
                                     else Val[rw - i, cl + i] += KScoreC[cPlayer];
-                                    if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _computer && b.cells[rw - 5, cl + 5] == _computer)
-                                        Val[rw - i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _computer && b.cells[rw - 5, cl + 5] == _computer)
+//                                         Val[rw - i, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
                                     //Val[rw + i, cl + i] += 2;
                                     if (Player == _player) Val[rw - i, cl + i] += TScoreC[cComputer];
                                     else Val[rw - i, cl + i] += KScoreC[cComputer];
-                                    if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _player && b.cells[rw - 5, cl + 5] == _player)
-                                        Val[rw + i, cl + i] = 0;
+//                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _player && b.cells[rw - 5, cl + 5] == _player)
+//                                         Val[rw + i, cl + i] = 0;
                                 }
                                 if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
                                     Val[rw - i, cl + i] *= 2;
@@ -259,27 +259,27 @@ namespace Caro
         private int Eval(ref CaroBoard b)
         {
             string s = "";
-//             for (int i = 0; i < n; i++)
-//             {
-//                 for (int j = 0; j < n; j++)
-//                     s += b.cells[i, j];
-//                 s += ";";
-//                 for (int j = 0; j < n; j++)
-//                     s += b.cells[j, i];
-//                 s += ";";
-//             }
-//             for (int i = 0; i < n - 4; i++)
-//             {
-//                 for (int j = 0; j < n - i; j++)
-//                     s += b.cells[j, i + j];
-//                 s += ";";
-//             }
-//             for (int i = n - 5; i >= 0; i--)
-//             {
-//                 for (int j = 0; j < n - i; j++)
-//                     s += b.cells[i + j, j];
-//                 s += ";";
-//             }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                    s += b.cells[i, j];
+                s += ";";
+                for (int j = 0; j < n; j++)
+                    s += b.cells[j, i];
+                s += ";";
+            }
+            for (int i = 0; i < n - 4; i++)
+            {
+                for (int j = 0; j < n - i; j++)
+                    s += b.cells[j, i + j];
+                s += ";";
+            }
+            for (int i = n - 5; i >= 0; i--)
+            {
+                for (int j = 0; j < n - i; j++)
+                    s += b.cells[i + j, j];
+                s += ";";
+            }
             for (int i = 4; i < n; i++)
             {
                 for (int j = 0; j <= i; j++)
@@ -292,7 +292,7 @@ namespace Caro
                     s += b.cells[j, i+n-j-1];
                 s += ";";
             }
-            Console.WriteLine(s);
+            //Console.WriteLine(s);
             Regex regex1,regex2;
             int diem = 0;
             for (int i = 0; i < Truonghopx.Length; i++)

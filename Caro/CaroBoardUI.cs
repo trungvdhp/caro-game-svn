@@ -13,13 +13,20 @@ namespace Caro
     {
         //public event EventHandler CellClick;
         #region properties
+
         const int CELL_SIZE = 25;
         Image _ImgX;
         Image _ImgO;
         CaroBoard _board;
-        bool GameOver = false;
+        public bool GameOver{private set;get;}
         AI ai;
         char PlayerSymbol;
+        public bool processing
+        {
+            get{
+                return PlayerSymbol != _board.CurrentPlayer;
+            }
+        }
         #endregion
         public CaroBoardUI()
         {
