@@ -2,10 +2,10 @@
 <DocumentElement>
   <Options>
     <C>op_trackComputerLevel</C>
-    <V>3</V>
+    <V>6</V>
   </Options>
   <Options>
-    <C>op_comboBox2</C>
+    <C>op_comboPlayerSymbol</C>
     <V>X</V>
   </Options>
   <Options>

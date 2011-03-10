@@ -35,7 +35,7 @@
             this.op_trackComputerLevel = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.op_comboBox2 = new System.Windows.Forms.ComboBox();
+            this.op_comboPlayerSymbol = new System.Windows.Forms.ComboBox();
             this.op_comboGameLaw = new System.Windows.Forms.ComboBox();
             this.op_comboFirstPlayer = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.groupBox1.Controls.Add(this.op_trackComputerLevel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.op_comboBox2);
+            this.groupBox1.Controls.Add(this.op_comboPlayerSymbol);
             this.groupBox1.Controls.Add(this.op_comboGameLaw);
             this.groupBox1.Controls.Add(this.op_comboFirstPlayer);
             this.groupBox1.Controls.Add(this.label5);
@@ -127,18 +127,18 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Computer Level";
             // 
-            // op_comboBox2
+            // op_comboPlayerSymbol
             // 
-            this.op_comboBox2.FormattingEnabled = true;
-            this.op_comboBox2.Items.AddRange(new object[] {
+            this.op_comboPlayerSymbol.FormattingEnabled = true;
+            this.op_comboPlayerSymbol.Items.AddRange(new object[] {
             "X",
             "O"});
-            this.op_comboBox2.Location = new System.Drawing.Point(280, 13);
-            this.op_comboBox2.Name = "op_comboBox2";
-            this.op_comboBox2.Size = new System.Drawing.Size(83, 21);
-            this.op_comboBox2.TabIndex = 1;
-            this.op_comboBox2.Text = "X";
-            this.op_comboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_keypress);
+            this.op_comboPlayerSymbol.Location = new System.Drawing.Point(280, 13);
+            this.op_comboPlayerSymbol.Name = "op_comboPlayerSymbol";
+            this.op_comboPlayerSymbol.Size = new System.Drawing.Size(83, 21);
+            this.op_comboPlayerSymbol.TabIndex = 1;
+            this.op_comboPlayerSymbol.Text = "X";
+            this.op_comboPlayerSymbol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_keypress);
             // 
             // op_comboGameLaw
             // 
@@ -215,7 +215,7 @@
         private System.Windows.Forms.TrackBar op_trackComputerLevel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox op_comboBox2;
+        private System.Windows.Forms.ComboBox op_comboPlayerSymbol;
         private System.Windows.Forms.ComboBox op_comboFirstPlayer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox op_comboGameLaw;
