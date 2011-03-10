@@ -11,6 +11,7 @@ namespace Caro
     public partial class Main : Form
     {
         private DataTable optionsTable;
+        private bool cursorChanged=false;
         public Main()
         {
             InitializeComponent();
@@ -92,8 +93,10 @@ namespace Caro
         }
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (board.processing) return;
             try
             {
+                optionsTable.Rows.Clear();
                 optionsTable.ReadXml("Options.xml");
                 LoadOptions(this);
                 bool playerFirst = op_comboFirstPlayer.Text == "Player" ? true : false;
@@ -105,7 +108,7 @@ namespace Caro
             {
                 board.NewGame(true, 'x', 3);
             }
-
+            timer1.Start();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,7 +119,33 @@ namespace Caro
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Options options = new Options();
+            options.ShowInTaskbar = false;
             options.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (board.processing)
+            {
+                if (!cursorChanged)
+                {
+                    cursorChanged = true;
+                    Cursor = Cursors.WaitCursor;
+                }
+            }
+            else
+            {
+                if(cursorChanged)
+                {
+                    cursorChanged = false;
+                    Cursor = Cursors.Arrow;
+                }
+            }
+            if(board.GameOver)
+            {
+                Cursor = Cursors.Arrow;
+                timer1.Stop();
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,7 @@
             this.op_comboPlayerSymbol = new System.Windows.Forms.ComboBox();
             this.op_comboGameLaw = new System.Windows.Forms.ComboBox();
             this.op_comboFirstPlayer = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.board = new Caro.CaroBoardUI();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -204,6 +206,11 @@
             this.op_comboFirstPlayer.TabIndex = 1;
             this.op_comboFirstPlayer.Text = "Player";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // board
             // 
             this.board.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -257,6 +264,7 @@
         private System.Windows.Forms.ComboBox op_comboPlayerSymbol;
         private System.Windows.Forms.ComboBox op_comboGameLaw;
         private System.Windows.Forms.ComboBox op_comboFirstPlayer;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }
