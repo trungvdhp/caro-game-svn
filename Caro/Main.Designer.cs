@@ -39,6 +39,7 @@
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.board = new Caro.CaroBoardUI();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             // 
             this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem,
+            this.optionsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
             this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -67,14 +69,14 @@
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newGameToolStripMenuItem.Text = "&New game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -90,13 +92,13 @@
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // helpToolStripMenuItem
@@ -113,13 +115,13 @@
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
             this.helpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem1.Text = "&Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             // 
             // board
@@ -132,6 +134,12 @@
             this.board.Name = "board";
             this.board.Size = new System.Drawing.Size(475, 475);
             this.board.TabIndex = 0;
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // Main
             // 
@@ -165,6 +173,7 @@
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
 
     }
 }

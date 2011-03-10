@@ -18,7 +18,7 @@ namespace Caro
         Image _ImgO;
         CaroBoard _board;
         bool GameOver = false;
-        AI1 ai;
+        AI ai;
         #endregion
         public CaroBoardUI()
         {
@@ -47,18 +47,9 @@ namespace Caro
             _board.cells[_board.size / 2, _board.size / 2] = 'o';
             _board.XPlaying = false;
             SwithchPlayer();
-            ai = new AI1(19, 'o');
+            ai = new AI(19, 'o');
             
         }
-        //public void Think(List<State> list)
-        //{
-        //    Graphics g = this.CreateGraphics();
-        //    Pen p = Pens.Green;
-        //    for(int i=0;i<list.Count;i++)
-        //    {
-        //        g.DrawRectangle(p, new Rectangle(list[i].p.y * CELL_SIZE, list[i].p.y * CELL_SIZE, CELL_SIZE, CELL_SIZE));
-        //    }
-        //}
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (!GameOver && _board.XPlaying)
