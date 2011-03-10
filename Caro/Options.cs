@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace Caro
 {
-    public partial class Main : Form
+    public partial class Options : Form
     {
         private DataTable optionsTable;
-        public Main()
+        public Options()
         {
             InitializeComponent();
             optionsTable = new DataTable("Options");
@@ -90,33 +90,42 @@ namespace Caro
                     SaveOptions(child);
                 }
         }
-        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            labelTrackbar.Text = op_trackComputerLevel.Value.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void comboBox_keypress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            optionsTable.Rows.Clear();
+            SaveOptions(this);
+            optionsTable.WriteXml("Options.xml");
+            Close();
+        }
+
+        private void Options_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Options_Shown(object sender, EventArgs e)
         {
             try
             {
                 optionsTable.ReadXml("Options.xml");
                 LoadOptions(this);
-                bool playerFirst = op_comboFirstPlayer.Text == "Player" ? true : false;
-                char playerSymbol = op_comboPlayerSymbol.Text == "X" ? 'x' : 'o';
-                int level = op_trackComputerLevel.Value;
-                board.NewGame(playerFirst, playerSymbol, level);
             }
             catch
             {
-                board.NewGame(true, 'x', 3);
             }
-
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Options options = new Options();
-            options.ShowDialog();
         }
     }
 }

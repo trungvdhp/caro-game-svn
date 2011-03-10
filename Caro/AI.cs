@@ -13,16 +13,12 @@ namespace Caro
         {
             this.p = new Position();
             this.p = p;
-//             this.p.x = p.x;
-//             this.p.y = p.y;
             this.val = val;
         }
         public void Set(Position p, int val)
         {
             this.p = new Position();
             this.p = p;
-            //this.p.x = p.x;
-            //this.p.y = p.y;
             this.val = val;
         }
     }
@@ -60,13 +56,13 @@ namespace Caro
                 for (int j = 0; j < n; j++)
                     Val[i, j] = 0;
         }
-        public AI(int size, char computer)
+        public AI(int size, int ai)
         {
             n = size;
             // this.computer = computer;
             Val = new int[n, n];
             _branch = 3;
-            maxdepth = 4;
+            maxdepth = 0;// ai;
         }
         public void EvalueCaroBoard(ref CaroBoard b, char Player)
         {
@@ -172,7 +168,7 @@ namespace Caro
                             }
                 }
             //Duong cheo len
-            for (rw = 4; rw < n - 4; rw++)
+            for (rw = 4; rw < n; rw++)
                 for (cl = 0; cl < n - 4; cl++)
                 {
                     cComputer = 0; cPlayer = 0;
@@ -263,32 +259,32 @@ namespace Caro
         private int Eval(ref CaroBoard b)
         {
             string s = "";
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                    s += b.cells[i, j];
-                s += ";";
-                for (int j = 0; j < n; j++)
-                    s += b.cells[j, i];
-                s += ";";
-            }
-            for (int i = 0; i < n - 4; i++)
-            {
-                for (int j = 0; j < n - i; j++)
-                    s += b.cells[j, i + j];
-                s += ";";
-            }
-            for (int i = n - 5; i >= 0; i--)
-            {
-                for (int j = 0; j < n - i; j++)
-                    s += b.cells[i + j, j];
-                s += ";";
-            }
+//             for (int i = 0; i < n; i++)
+//             {
+//                 for (int j = 0; j < n; j++)
+//                     s += b.cells[i, j];
+//                 s += ";";
+//                 for (int j = 0; j < n; j++)
+//                     s += b.cells[j, i];
+//                 s += ";";
+//             }
+//             for (int i = 0; i < n - 4; i++)
+//             {
+//                 for (int j = 0; j < n - i; j++)
+//                     s += b.cells[j, i + j];
+//                 s += ";";
+//             }
+//             for (int i = n - 5; i >= 0; i--)
+//             {
+//                 for (int j = 0; j < n - i; j++)
+//                     s += b.cells[i + j, j];
+//                 s += ";";
+//             }
             for (int i = 4; i < n; i++)
             {
                 for (int j = 0; j <= i; j++)
-                    s += b.cells[i-j, j];
-                s+=";";
+                    s += b.cells[i - j, j];
+                s += ";";
             }
             for (int i = n-5; i >=0; i--)
             {
@@ -296,6 +292,7 @@ namespace Caro
                     s += b.cells[j, i+n-j-1];
                 s += ";";
             }
+            Console.WriteLine(s);
             Regex regex1,regex2;
             int diem = 0;
             for (int i = 0; i < Truonghopx.Length; i++)

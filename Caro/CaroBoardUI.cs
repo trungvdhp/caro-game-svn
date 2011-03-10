@@ -19,6 +19,7 @@ namespace Caro
         CaroBoard _board;
         bool GameOver = false;
         AI ai;
+        char PlayerSymbol;
         #endregion
         public CaroBoardUI()
         {
@@ -26,33 +27,43 @@ namespace Caro
             _ImgX = new Bitmap(Properties.Resources.x, CELL_SIZE, CELL_SIZE);
             _ImgO = new Bitmap(Properties.Resources.o, CELL_SIZE, CELL_SIZE);
             _board = new CaroBoard();
-            this.NewGame(true);
+            this.NewGame(true,'o',4);
+            GameOver = true;
         }
         /// <summary>
         /// Bắt đầu game mới
         /// </summary>
-        /// <param name="defaultFirst">Bằng true thì người chơi đầu tiên sẽ là mặc định theo lớp CaroBoard</param>
-        public void NewGame(bool defaultFirst)
+        /// <param name="playerFirst">Người đi trước</param>
+        /// <param name="playerSymbol">Quân người chơi (x-o)</param>
+        /// <param name="conputerAI">Độ sâu khi máy tính toán</param>
+        public void NewGame(bool playerFirst, char playerSymbol, int conputerAI)
         {
             GameOver = false;
+            PlayerSymbol = playerSymbol=='x'?'x':'o';
             _board = new CaroBoard(19);
-            if (!defaultFirst) _board.XPlaying = !_board.XPlaying;
+            _board.PrevMove.Set(-1, -1);
+            if (playerFirst)
+            {
+                _board.XPlaying = playerSymbol == 'x' ? true : false;
+                _board.CurrMove.Set(-1, -1);
+            }
+            else
+            {
+                _board.XPlaying = playerSymbol == 'x' ? false : true;
+                _board.CurrMove.Set(_board.size / 2, _board.size / 2);
+                _board.cells[_board.size / 2, _board.size / 2] = playerSymbol=='x'?'o':'x';
+                SwithchPlayer();
+            }
             this.MaximumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.MinimumSize = new Size(_board.size * CELL_SIZE + 1, _board.size * CELL_SIZE + 1);
             this.Size = new Size(_board.size * CELL_SIZE, _board.size * CELL_SIZE);
-            Invalidate();
-            _board.PrevMove.Set(-1, -1);
-            _board.CurrMove.Set(-1, -1);
-            _board.CurrMove.Set(_board.size / 2, _board.size / 2);
-            _board.cells[_board.size / 2, _board.size / 2] = 'o';
-            _board.XPlaying = false;
-            SwithchPlayer();
-            ai = new AI(19, 'o');
+            Invalidate();            
+            ai = new AI(19, 4);
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (!GameOver && _board.XPlaying)
+            if (!GameOver && _board.CurrentPlayer==PlayerSymbol)
             {
                 int i = (int)(e.Y / CELL_SIZE);
                 int j = (int)(e.X / CELL_SIZE);
@@ -62,8 +73,6 @@ namespace Caro
                     _board.PrevMove.Set(_board.CurrMove);
                     _board.CurrMove.Set(i, j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    // GameOver = _board.IsGame0ver;
-                    //_board.XPlaying = !_board.XPlaying;
                     UpdateGraphic(_board.CurrMove);
                     UpdateGraphic(_board.PrevMove);
                     SwithchPlayer();
@@ -107,7 +116,7 @@ namespace Caro
                 return;
             }
             
-            if(!_board.XPlaying)
+            if(_board.CurrentPlayer!=PlayerSymbol)
             {
                 Thread th = new Thread(Computer);
                 th.Start();
