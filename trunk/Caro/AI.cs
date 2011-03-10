@@ -98,7 +98,8 @@ namespace Caro
 //                                     if (b.CheckPosition(rw, cl - 1) && b.CheckPosition(rw, cl + 5) && b.cells[rw, cl - 1] == _player && b.cells[rw, cl + 5] == _player)
 //                                         Val[rw, cl + i] = 0;
                                 }
-                                if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || (b.CheckPosition(rw, cl + i + 1) && b.cells[rw, cl + i + 1] == ' ')))
+                                //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || (b.CheckPosition(rw, cl + i + 1) && b.cells[rw, cl + i + 1] == ' ')))
+                                if (cComputer == 4 || cPlayer == 4)
                                     Val[rw, cl + i] *= 2;
                             }
                 }
@@ -130,7 +131,8 @@ namespace Caro
 //                                     if (b.CheckPosition(rw - 1, cl) && b.CheckPosition(rw + 5, cl) && b.cells[rw - 1, cl] == _player && b.cells[rw + 5, cl] == _player)
 //                                         Val[rw + i, cl] = 0;
                                 }
-                                if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl) && b.cells[rw + i - 1, cl] == ' ') || (b.CheckPosition(rw + i + 1, cl) && b.cells[rw + i + 1, cl] == ' ')))
+                                //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl) && b.cells[rw + i - 1, cl] == ' ') || (b.CheckPosition(rw + i + 1, cl) && b.cells[rw + i + 1, cl] == ' ')))
+                                if (cComputer == 4 || cPlayer == 4)
                                     Val[rw + i, cl] *= 2;
                             }
                 }
@@ -163,7 +165,8 @@ namespace Caro
 //                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _player && b.cells[rw + 5, cl + 5] == _player)
 //                                         Val[rw + i, cl + i] = 0;
                                 }
-                                if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl + i - 1) && b.cells[rw + i - 1, cl + i - 1] == ' ') || (b.CheckPosition(rw + i + 1, cl + i + 1) && b.cells[rw + i + 1, cl + i + 1] == ' ')))
+                                //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl + i - 1) && b.cells[rw + i - 1, cl + i - 1] == ' ') || (b.CheckPosition(rw + i + 1, cl + i + 1) && b.cells[rw + i + 1, cl + i + 1] == ' ')))
+                                if (cComputer == 4 || cPlayer == 4)
                                     Val[rw + i, cl + i] *= 2;
                             }
                 }
@@ -198,7 +201,8 @@ namespace Caro
 //                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _player && b.cells[rw - 5, cl + 5] == _player)
 //                                         Val[rw + i, cl + i] = 0;
                                 }
-                                if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
+                                //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
+                                if (cComputer == 4 || cPlayer == 4)
                                     Val[rw - i, cl + i] *= 2;
                             }
                 }
@@ -343,7 +347,7 @@ namespace Caro
         private int MaxVal(ref CaroBoard b, State s, int alpha, int beta, int depth)
         {
             int val = Eval(ref b);
-            if (depth >= maxdepth || Math.Abs(val) > 5000) return val;
+            if (depth >= maxdepth || Math.Abs(val) > 3000) return val;
             EvalueCaroBoard(ref b, _computer);
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
@@ -351,6 +355,7 @@ namespace Caro
             for (int i = 0; i < _branch; i++)
             {
                 b.cells[list[i].p.x, list[i].p.y] = _computer;
+                //if(depth==0) Console.WriteLine("--{0}-{1}", list[i].p.x, list[i].p.y);
                 alpha = Math.Max(alpha, MinVal(ref b, list[i], alpha, beta, depth + 1));
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
                 if (alpha > beta) break;
@@ -360,7 +365,7 @@ namespace Caro
         private int MinVal(ref CaroBoard b, State s, int alpha, int beta, int depth)
         {
             int val = Eval(ref b);
-            if (depth >= maxdepth || Math.Abs(val) > 5000) return val;
+            if (depth >= maxdepth || Math.Abs(val) > 3000) return val;
             EvalueCaroBoard(ref b, _player);
             List<State> list = new List<State>();
             for (int i = 0; i < _branch; i++)
@@ -368,6 +373,7 @@ namespace Caro
             for (int i = 0; i < _branch; i++)
             {
                 b.cells[list[i].p.x, list[i].p.y] = _player;
+                //if (depth == 0) Console.WriteLine("--{0}-{1}", list[i].p.x, list[i].p.y);
                 beta = Math.Min(beta, MaxVal(ref b, list[i], alpha, beta, depth + 1));
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
                 if (alpha >= beta) break;
