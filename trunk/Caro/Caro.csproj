@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI1.cs" />
+    <Compile Include="AI.cs" />
     <Compile Include="CaroBoard.cs" />
     <Compile Include="CaroBoardUI2.cs">
       <SubType>UserControl</SubType>
