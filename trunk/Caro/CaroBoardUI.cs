@@ -18,21 +18,18 @@ namespace Caro
         Image _ImgX;
         Image _ImgO;
         CaroBoard _board;
+        Image _ImgThink;
         public bool GameOver{private set;get;}
         AI ai;
         char PlayerSymbol;
-        public bool processing
-        {
-            get{
-                return PlayerSymbol != _board.CurrentPlayer&&!GameOver;
-            }
-        }
+        public bool processing;
         #endregion
         public CaroBoardUI()
         {
             InitializeComponent();
             _ImgX = new Bitmap(Properties.Resources.x, CELL_SIZE, CELL_SIZE);
             _ImgO = new Bitmap(Properties.Resources.o, CELL_SIZE, CELL_SIZE);
+            _ImgThink = new Bitmap(Properties.Resources.think, CELL_SIZE, CELL_SIZE);
             _board = new CaroBoard();
             this.NewGame(true,'o',4);
             GameOver = true;
@@ -111,6 +108,11 @@ namespace Caro
             Rectangle rc = new Rectangle(p.y * CELL_SIZE, p.x * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
             Invalidate(rc);
         }
+        private void UpdateGr4phic(Position p)
+        {
+            Rectangle rc = new Rectangle(p.y * CELL_SIZE+1, p.x * CELL_SIZE-1, CELL_SIZE-2 , CELL_SIZE-2 );
+            Invalidate(rc);
+        }
         public void SwithchPlayer()
         {
             //EchoBoard();
@@ -125,12 +127,15 @@ namespace Caro
             
             if(_board.CurrentPlayer!=PlayerSymbol)
             {
+                processing = true;
+                timer1.Start();
                 Thread th = new Thread(Computer);
                 th.Start();
             }
         }
         public void Computer()
         {
+            //timer1.Start();
             _board.PrevMove.Set(_board.CurrMove);
             char currplayer = _board.XPlaying ? 'x' : 'o';
             Position p = ai.Solve(ref _board, currplayer);
@@ -139,6 +144,9 @@ namespace Caro
             _board.cells[p.x, p.y] = currplayer;
             UpdateGraphic(p);
             UpdateGraphic(_board.PrevMove);
+            UpdateGraphic(ai.prevp);
+            processing = false;
+            timer1.Stop();
             SwithchPlayer();
         }
         protected override void OnPaint(PaintEventArgs e)
@@ -162,11 +170,23 @@ namespace Caro
             }
             e.Graphics.DrawLine(Pens.Black, 0, x, this.Height, x);
             e.Graphics.DrawLine(Pens.Black, y, 0, y, this.Width);
-            Pen p;
-            if (!_board.XPlaying) p = Pens.Red;
-            else p = Pens.DarkViolet;
+            Pen p=Pens.Red;
+//             if (!_board.XPlaying) p = Pens.Red;
+//             else p = Pens.DarkViolet;
             e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE, _board.CurrMove.x * CELL_SIZE, CELL_SIZE, CELL_SIZE));
+            //e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE-1, _board.CurrMove.x * CELL_SIZE-1, CELL_SIZE+2, CELL_SIZE+2));
+            if (processing) e.Graphics.DrawImage(_ImgThink, ai.currp.y * CELL_SIZE, ai.currp.x * CELL_SIZE);
             base.OnPaint(e);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(!(ai.prevp.x==ai.currp.x&&ai.prevp.y==ai.currp.y))
+            {
+                UpdateGr4phic(ai.currp);
+                UpdateGr4phic(ai.prevp);
+                ai.prevp.Set(ai.currp);
+            }
         }
     }
 }

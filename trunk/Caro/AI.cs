@@ -27,14 +27,16 @@ namespace Caro
     class AI
     {
         int n;
+        Random rand;
         int[] TScore = { 0, 1, 9, 85, 769 };
-        int[] KScore = { 0, 2, 28, 256, 2308 };
+        int[] KScore = { 0, 4, 28, 256, 2308 };
         int[,] Val;
         private int maxdepth;
         char _computer;
         char _player;
         int _branch;
         const int INT_MAX = 2147483647;
+
         public char computer
         {
             get
@@ -50,6 +52,7 @@ namespace Caro
                 _computer = value;
             }
         }
+        public Position prevp, currp;
         void ResetVal()
         {
             for (int i = 0; i < n; i++)
@@ -59,10 +62,12 @@ namespace Caro
         public AI(int size, int ai)
         {
             n = size;
-            // this.computer = computer;
+            rand = new Random();
             Val = new int[n, n];
             _branch = 3;
             maxdepth = ai;
+            prevp = new Position(-1, -1);
+            currp = new Position(-1, -1);
         }
         public void EvalueCaroBoard(ref CaroBoard b, char Player)
         {
@@ -99,8 +104,18 @@ namespace Caro
 //                                         Val[rw, cl + i] = 0;
                                 }
                                 //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw, cl + i - 1) && b.cells[rw, cl + i - 1] == ' ') || (b.CheckPosition(rw, cl + i + 1) && b.cells[rw, cl + i + 1] == ' ')))
-                                if (cComputer == 4 || cPlayer == 4)
-                                    Val[rw, cl + i] *= 2;
+                                if (cComputer == 4)
+                                {
+                                    if (Player == _computer)
+                                        Val[rw, cl + i] = 100000;
+                                    else Val[rw, cl + i] = 50000;
+                                }
+                                else if (cPlayer == 4)
+                                {
+                                    if (Player == _player)
+                                        Val[rw, cl + i] = 100000;
+                                    else Val[rw, cl + i] = 50000;
+                                }
                             }
                 }
             //Cot
@@ -132,8 +147,19 @@ namespace Caro
 //                                         Val[rw + i, cl] = 0;
                                 }
                                 //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl) && b.cells[rw + i - 1, cl] == ' ') || (b.CheckPosition(rw + i + 1, cl) && b.cells[rw + i + 1, cl] == ' ')))
-                                if (cComputer == 4 || cPlayer == 4)
-                                    Val[rw + i, cl] *= 2;
+
+                                if (cComputer == 4)
+                                {
+                                    if (Player == _computer)
+                                        Val[rw + i, cl] = 100000;
+                                    else Val[rw + i, cl] = 50000;
+                                }
+                                else if (cPlayer == 4)
+                                {
+                                    if (Player == _player)
+                                        Val[rw + i, cl] = 100000;
+                                    else Val[rw + i, cl] = 50000;
+                                }
                             }
                 }
             //Duong cheo xuong
@@ -166,8 +192,18 @@ namespace Caro
 //                                         Val[rw + i, cl + i] = 0;
                                 }
                                 //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw + i - 1, cl + i - 1) && b.cells[rw + i - 1, cl + i - 1] == ' ') || (b.CheckPosition(rw + i + 1, cl + i + 1) && b.cells[rw + i + 1, cl + i + 1] == ' ')))
-                                if (cComputer == 4 || cPlayer == 4)
-                                    Val[rw + i, cl + i] *= 2;
+                                if (cComputer == 4)
+                                {
+                                    if (Player == _computer)
+                                        Val[rw + i, cl + i] = 100000;
+                                    else Val[rw + i, cl + i] = 50000;
+                                }
+                                else if (cPlayer == 4)
+                                {
+                                    if (Player == _player)
+                                        Val[rw + i, cl + i] = 100000;
+                                    else Val[rw + i, cl + i] = 50000;
+                                }
                             }
                 }
             //Duong cheo len
@@ -202,8 +238,18 @@ namespace Caro
 //                                         Val[rw + i, cl + i] = 0;
                                 }
                                 //if ((cComputer == 4 || cPlayer == 4) && ((b.CheckPosition(rw - i + 1, cl + i - 1) && b.cells[rw - i + 1, cl + i - 1] == ' ') || (b.CheckPosition(rw - i - 1, cl + i + 1) && b.cells[rw - i - 1, cl + i + 1] == ' ')))
-                                if (cComputer == 4 || cPlayer == 4)
-                                    Val[rw - i, cl + i] *= 2;
+                                if (cComputer == 4)
+                                {
+                                    if (Player == _computer)
+                                        Val[rw - i, cl + i] = 100000;
+                                    else Val[rw - i, cl + i] = 50000;
+                                }
+                                else if (cPlayer == 4)
+                                {
+                                    if (Player == _player)
+                                        Val[rw - i, cl + i] = 100000;
+                                    else Val[rw - i, cl + i] = 50000;
+                                }
                             }
                 }
             //EchoVal();
@@ -254,8 +300,10 @@ namespace Caro
                 }
             for (int i = 0; i < list.Count; i++)
                 Val[list[i].p.x, list[i].p.y] = 0;
-            int r = new Random().Next(0, list.Count);
-            return list[r];
+            
+            int x=rand.Next(0, list.Count);
+            //Console.Write("i={0};", x);
+            return list[x];
         }
         private string[] Truonghopx = { @"\sxx\s", @"\sxxxo", @"oxxx\s", @"\sxxx\s", @"\sxxxxo", @"oxxxx\s", @"\sxxxx\s", @"xxxxx"};
         private string[] Truonghopo = { @"\soo\s", @"\sooox", @"xooo\s", @"\sooo\s", @"\soooox", @"xoooo\s", @"\soooo\s", @"ooooo"};
@@ -278,7 +326,7 @@ namespace Caro
                     s += b.cells[j, i + j];
                 s += ";";
             }
-            for (int i = n - 5; i >= 0; i--)
+            for (int i = n - 5; i > 0; i--)
             {
                 for (int j = 0; j < n - i; j++)
                     s += b.cells[i + j, j];
@@ -290,11 +338,11 @@ namespace Caro
                     s += b.cells[i - j, j];
                 s += ";";
             }
-            for (int i = n-5; i >=0; i--)
+            for (int i = n - 5; i > 0; i--)
             {
-                for (int j = n-1; j >=i; j--)
-                    s += b.cells[j, i+n-j-1];
-                s += ";";
+                for (int j = n - 1; j >= i; j--)
+                    s += b.cells[j, i + n - j - 1];
+                s += ";\n";
             }
             //Console.WriteLine(s);
             Regex regex1,regex2;
@@ -316,8 +364,14 @@ namespace Caro
             }
             return diem;
         }
-        public Position Solve(ref CaroBoard b, char Player)
+        public Position Solve(ref CaroBoard bb, char Player)
         {
+            currp.Set(-1, -1);
+            prevp.Set(-1, -1);
+            CaroBoard b = new CaroBoard(bb.size);
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    b.cells[i, j] = bb.cells[i, j];
             Console.WriteLine("Current P={0}", Eval(ref b));
             computer = Player;
             EvalueCaroBoard(ref b, _computer);
@@ -328,6 +382,7 @@ namespace Caro
             List<State> ListChoose = new List<State>();
             for (int i = 0; i < _branch; i++)
             {
+                currp.Set(list[i].p);
                 b.cells[list[i].p.x, list[i].p.y] = _computer;
                 int t = MinVal(ref b, list[i], -INT_MAX, INT_MAX, 0);
                 Console.WriteLine("{0}-{1}: {2}", list[i].p.x, list[i].p.y, t);
@@ -342,7 +397,9 @@ namespace Caro
                 }
                 b.cells[list[i].p.x, list[i].p.y] = ' ';
             }
-            return ListChoose[new Random().Next(0,ListChoose.Count)].p;
+            int x = rand.Next(0, ListChoose.Count);
+            //Console.Write("i={0};",x);
+            return ListChoose[x].p;
         }
         private int MaxVal(ref CaroBoard b, State s, int alpha, int beta, int depth)
         {
