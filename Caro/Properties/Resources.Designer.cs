@@ -81,6 +81,13 @@ namespace Caro.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap think {
+            get {
+                object obj = ResourceManager.GetObject("think", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap whitep {
             get {
                 object obj = ResourceManager.GetObject("whitep", resourceCulture);

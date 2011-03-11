@@ -101,7 +101,7 @@
             // op_trackComputerLevel
             // 
             this.op_trackComputerLevel.Location = new System.Drawing.Point(280, 46);
-            this.op_trackComputerLevel.Maximum = 6;
+            this.op_trackComputerLevel.Maximum = 8;
             this.op_trackComputerLevel.Minimum = 1;
             this.op_trackComputerLevel.Name = "op_trackComputerLevel";
             this.op_trackComputerLevel.Size = new System.Drawing.Size(83, 45);
