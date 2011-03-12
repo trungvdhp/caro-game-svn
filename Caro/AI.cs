@@ -267,6 +267,7 @@ namespace Caro
             }
             //Console.WriteLine("----");
             int x = rand.Next(0, list.Count);
+            //Val[list[x].p.x, list[x].p.y] = 0;
             return list[x];
         }
         private string[] Truonghopx = { @"\sxx\s", @"\sxxxo", @"oxxx\s", @"\sxxx\s", @"\sxxxxo", @"oxxxx\s", @"\sxxxx\s", @"xxxxx"};
