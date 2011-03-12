@@ -130,12 +130,12 @@ namespace Caro
         /// <param name="count"></param>
         /// <param name="type">Kiểu đi</param>
         /// <returns>Số quân cờ liên kết</returns>
-        public int Check5Row(int x,int y,int type,char CurrPlayer)
+        public int Check5Row(int x, int y, int type, char CurrPlayer)
         {
             bool next = true, prev = true;
             int count = 1;
             int u, v;
-            for(int i=1;i<5;i++)
+            for (int i = 1; i < 5; i++)
             {
                 u = x + i * dx[type];
                 v = y + i * dy[type];
