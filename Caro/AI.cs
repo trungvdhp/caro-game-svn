@@ -28,9 +28,9 @@ namespace Caro
     {
         int n;
         Random rand;
-        int[] TScore = { 0, 7, 9, 85, 769 };
-        int[] TScoreC = { 0, 8, 9, 85, 769 };
-        int[] KScore = { 0, 7, 28, 256, 2308 };
+        //int[] TScore = { 0, 7, 9, 85, 769 };
+        int[] TScore = { 0, 1, 9, 85, 769 };
+        int[] KScore = { 0, 4, 28, 256, 2308 };
         int[,] Val;
         private int maxdepth;
         char _computer;
@@ -159,14 +159,14 @@ namespace Caro
                             {
                                 if (cComputer == 0)
                                 {
-                                    if (Player == _computer) Val[rw + i, cl + i] += TScoreC[cPlayer];
+                                    if (Player == _computer) Val[rw + i, cl + i] += TScore[cPlayer];
                                     else Val[rw + i, cl + i] += KScore[cPlayer];
                                     //                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _computer && b.cells[rw + 5, cl + 5] == _computer)
                                     //                                         Val[rw + i, cl + i] = 0;
                                 }
                                 if (cPlayer == 0)
                                 {
-                                    if (Player == _player) Val[rw + i, cl + i] += TScoreC[cComputer];
+                                    if (Player == _player) Val[rw + i, cl + i] += TScore[cComputer];
                                     else Val[rw + i, cl + i] += KScore[cComputer];
                                     //                                     if (b.CheckPosition(rw - 1, cl - 1) && b.CheckPosition(rw + 5, cl + 5) && b.cells[rw - 1, cl - 1] == _player && b.cells[rw + 5, cl + 5] == _player)
                                     //                                         Val[rw + i, cl + i] = 0;
@@ -194,7 +194,7 @@ namespace Caro
                                 if (cComputer == 0)
                                 {
                                     //Val[rw + i, cl + i] += 2;
-                                    if (Player == _computer) Val[rw - i, cl + i] += TScoreC[cPlayer];
+                                    if (Player == _computer) Val[rw - i, cl + i] += TScore[cPlayer];
                                     else Val[rw - i, cl + i] += KScore[cPlayer];
                                     //                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _computer && b.cells[rw - 5, cl + 5] == _computer)
                                     //                                         Val[rw - i, cl + i] = 0;
@@ -202,7 +202,7 @@ namespace Caro
                                 if (cPlayer == 0)
                                 {
                                     //Val[rw + i, cl + i] += 2;
-                                    if (Player == _player) Val[rw - i, cl + i] += TScoreC[cComputer];
+                                    if (Player == _player) Val[rw - i, cl + i] += TScore[cComputer];
                                     else Val[rw - i, cl + i] += KScore[cComputer];
                                     //                                     if (b.CheckPosition(rw + 1, cl - 1) && b.CheckPosition(rw - 5, cl + 5) && b.cells[rw + 1, cl - 1] == _player && b.cells[rw - 5, cl + 5] == _player)
                                     //                                         Val[rw + i, cl + i] = 0;
