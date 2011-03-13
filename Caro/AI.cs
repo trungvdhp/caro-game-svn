@@ -410,5 +410,32 @@ namespace Caro
             }
             return beta;
         }
+        private int NegaScout(ref CaroBoard bb, State s, int alpha, int beta, int depth)
+        {
+            int val = Eval(ref bb);
+            if (depth >= maxdepth || Math.Abs(val) > 3000) return val;
+            int b = beta,a;
+            if(depth%2==0) EvalueCaroBoard(ref bb, _player);
+            else EvalueCaroBoard(ref bb, _computer);
+            List<State> list = new List<State>();
+            for (int i = 0; i < _branch; i++)
+            {
+                list.Add(GetMaxNode());
+                if (list[i].val > 1538) break;
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (depth % 2 == 0) bb.cells[list[i].p.x, list[i].p.y] = _computer;
+                else bb.cells[list[i].p.x, list[i].p.y] = _player;
+                a = -NegaScout(ref bb, list[i],-b,-alpha,depth+1);
+                if(a>alpha&&a<beta&&i!=0)
+                    a = -NegaScout(ref bb, list[i],-beta,-alpha, depth + 1);
+                bb.cells[list[i].p.x, list[i].p.y] = ' ';
+                alpha = Math.Max(a, alpha);
+                if(alpha>=beta) break;
+                b = alpha + 1;
+            }
+            return alpha;
+        }
     }
 }
