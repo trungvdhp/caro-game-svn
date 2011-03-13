@@ -150,5 +150,10 @@ namespace Caro
                 timer1.Stop();
             }
         }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            board.Undo();
+        }
     }
 }

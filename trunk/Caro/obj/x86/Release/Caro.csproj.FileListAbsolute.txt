@@ -2,7 +2,6 @@ D:\Projects\caro-game-svn\Caro\bin\Release\Caro.exe
 D:\Projects\caro-game-svn\Caro\bin\Release\Caro.pdb
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\ResolveAssemblyReference.cache
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.CaroBoardUI2.resources
-D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.CaroBoardUI.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.Fake.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.Main.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.Options.resources
@@ -12,3 +11,4 @@ D:\Projects\caro-game-svn\Caro\obj\x86\Release\ResGen.read.1.tlog
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\ResGen.write.1.tlog
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.exe
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.pdb
+D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.Step.resources
