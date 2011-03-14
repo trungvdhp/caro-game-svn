@@ -155,5 +155,10 @@ namespace Caro
         {
             board.Undo();
         }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            board.Redo();
+        }
     }
 }
