@@ -55,7 +55,6 @@ C:\Users\HaiAnh\Desktop\Caro\Caro\bin\Debug\Caro.exe
 C:\Users\HaiAnh\Desktop\Caro\Caro\bin\Debug\Caro.pdb
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.CaroBoardUI2.resources
-C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.CaroBoardUI.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Fake.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Main.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Properties.Resources.resources
@@ -67,3 +66,4 @@ C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\ResGen.write.1.tlog
 D:\caro-game-svn\Caro\obj\x86\Debug\Caro.Fake.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Debug\Caro.Options.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Options.resources
+C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Step.resources

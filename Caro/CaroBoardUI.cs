@@ -83,6 +83,7 @@ namespace Caro
             Invalidate();            
             ai = new AI(19, computerAI);
             step = new List<Step>();
+            CurrIndex = -1;
             
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -133,30 +134,44 @@ namespace Caro
             Rectangle rc = new Rectangle(p.y * CELL_SIZE+1, p.x * CELL_SIZE-1, CELL_SIZE-2 , CELL_SIZE-2 );
             Invalidate(rc);
         }
+        private int CurrIndex;
+        public void Redo()
+        {
+            if (CurrIndex+1 >= step.Count || GameOver || processing) return;
+            CurrIndex += 1;
+            _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol;
+            _board.PrevMove.Set(step[CurrIndex].p);
+            CurrIndex += 1;
+            _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol=='x'?'o':'x';
+            _board.CurrMove.Set(step[CurrIndex].p);
+            UpdateGraphic(_board.PrevMove);
+            UpdateGraphic(_board.CurrMove);
+        }
         public void Undo()
         {
-            if(step.Count<2||GameOver||processing) return;
-            Step c = new Step(step[step.Count - 1].p, step[step.Count - 1].CurrentPlayer);
-            Step p = new Step(step[step.Count - 2].p, step[step.Count - 2].CurrentPlayer);
-            step.RemoveAt(step.Count - 1);
-            step.RemoveAt(step.Count - 1);
+            if (CurrIndex < 1 || GameOver || processing) return;
+            Step c = new Step(step[CurrIndex].p, step[CurrIndex].CurrentPlayer);
+            Step p = new Step(step[CurrIndex - 1].p, step[CurrIndex - 1].CurrentPlayer);
+            CurrIndex -= 2;
             _board.cells[c.p.x, c.p.y] = ' ';
             _board.cells[p.p.x, p.p.y] = ' ';
-            if (step.Count > 0) _board.CurrMove.Set(step[step.Count - 1].p);
+            if (CurrIndex>-1) _board.CurrMove.Set(step[CurrIndex].p);
             else _board.CurrMove.Set(-1,-1);
-            if (step.Count > 1) _board.PrevMove.Set(step[step.Count - 2].p);
+            if (CurrIndex > 0) _board.PrevMove.Set(step[CurrIndex - 1].p);
             else _board.PrevMove.Set(-1, -1);
             _board.XPlaying = PlayerSymbol == 'x' ? true : false;
             UpdateGraphic(c.p);
             UpdateGraphic(p.p);
-            //if (step.Count>0&&step[step.Count - 1].CurrentPlayer != PlayerSymbol) SwithchPlayer();
+            UpdateGraphic(_board.CurrMove);
 
         }
         public void SwithchPlayer()
         {
             //EchoBoard();
             GameOver = _board.IsGame0ver;
+            while (step.Count > CurrIndex+1) step.RemoveAt(step.Count - 1);
             step.Add(new Step(_board.CurrMove, _board.CurrentPlayer));
+            CurrIndex++;
             _board.XPlaying = !_board.XPlaying;
             if (GameOver)
             {
