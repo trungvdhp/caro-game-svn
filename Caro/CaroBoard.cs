@@ -108,14 +108,19 @@ namespace Caro
 
             }
         }
-        public bool IsGame0ver
+        public int[] IsGame0ver
         {
             get
             {
                 char CurrPlayer = XPlaying ? 'x' : 'o';
+                int[] kq = new int[5];
+                kq[0] = 1;
                 for (int i = 0; i < 4; i++)
-                    if (Check5Row(CurrMove.x, CurrMove.y, i, CurrPlayer) >= 5) return true;
-                return false;
+                {
+                    kq = Check5Row(CurrMove.x, CurrMove.y, i, CurrPlayer);
+                    if (kq[0] >= 5) return kq;
+                }
+                return kq;
             }
         }
         public bool CheckPosition(int x,int y)
@@ -130,25 +135,38 @@ namespace Caro
         /// <param name="count"></param>
         /// <param name="type">Kiểu đi</param>
         /// <returns>Số quân cờ liên kết</returns>
-        public int Check5Row(int x, int y, int type, char CurrPlayer)
+        public int[] Check5Row(int x, int y, int type, char CurrPlayer)
         {
             bool next = true, prev = true;
-            int count = 1;
+            //int count = 1;
             int u, v;
+            int[] kq = new int[5];
+            kq[0] = 1;
+            kq[1] = kq[3] = x;
+            kq[2] = kq[4] = y;
             for (int i = 1; i < 5; i++)
             {
                 u = x + i * dx[type];
                 v = y + i * dy[type];
                 if (CheckPosition(u, v) && cells[u, v] == CurrPlayer && next)
-                    count++;
-                else next = false;
+                {
+                    kq[0]++;
+                    kq[1] = u;
+                    kq[2] = v;
+                }
+                else
+                    next = false;
                 u = x + i * dx[type + 4];
                 v = y + i * dy[type + 4];
                 if (CheckPosition(u, v) && cells[u, v] == CurrPlayer && prev)
-                    count++;
+                {
+                    kq[0]++;
+                    kq[3] = u;
+                    kq[4] = v;
+                }
                 else prev = false;
             }
-            return count;
+            return kq;
         }
         //public void Set(CaroBoard b)
         //{

@@ -160,5 +160,10 @@ namespace Caro
         {
             board.Redo();
         }
+
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
