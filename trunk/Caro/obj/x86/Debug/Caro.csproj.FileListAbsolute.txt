@@ -67,3 +67,16 @@ D:\caro-game-svn\Caro\obj\x86\Debug\Caro.Fake.resources
 D:\Projects\caro-game-svn\Caro\obj\x86\Debug\Caro.Options.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Options.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Debug\Caro.Step.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.exe
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.pdb
+E:\caro-game-svn\Caro\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.CaroBoardUI2.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.Fake.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.Main.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.Options.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.Properties.Resources.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.Test.resources
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.csproj.GenerateResource.Cache
+E:\caro-game-svn\Caro\bin\Debug\Caro.exe
+E:\caro-game-svn\Caro\bin\Debug\Caro.pdb
+E:\caro-game-svn\Caro\obj\x86\Debug\Caro.CaroBoardUI.resources

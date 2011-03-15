@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B13CCBC2-ADA4-425A-B680-3DD345CA0273}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -129,9 +129,6 @@
     <None Include="Resources\o.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\blackp.png" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +139,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\think.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewDocumentHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_RedoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_UndoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OptionsHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
