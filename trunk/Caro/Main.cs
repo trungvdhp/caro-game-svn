@@ -173,7 +173,7 @@ namespace Caro
 
         private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            board.SaveGame();
+            //board.SaveGame();
         }
     }
 }

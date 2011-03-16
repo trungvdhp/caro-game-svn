@@ -37,11 +37,11 @@ namespace Caro
             _ImgO = new Bitmap(Properties.Resources.o, CELL_SIZE, CELL_SIZE);
             _ImgThink = new Bitmap(Properties.Resources.think, CELL_SIZE, CELL_SIZE);
             _board = new CaroBoard();
-            CaroMessage.Text = "Nhấn vào option để cài đặt và new game để chơi nào!";
             this.NewGame(true,'o',4);
             t = -1;
             ResetScores();
             GameOver = true;
+            CaroMessage.Text = "Nhấn option để cài đặt và new game để chơi nào!";
         }
         /// <summary>
         /// Đặt lại tỉ số
@@ -68,6 +68,7 @@ namespace Caro
                 _board.XPlaying = playerSymbol == 'x' ? true : false;
                 _board.CurrMove.Set(-1, -1);
                 CaroCount.Text = "0";
+                CaroMessage.Text = "Người chơi đi trước.";
             }
             else
             {
@@ -195,8 +196,8 @@ namespace Caro
             step.Add(new Step(_board.CurrMove, _board.CurrentPlayer));
             CurrIndex++;
             _board.XPlaying = !_board.XPlaying;
-            if (_board.XPlaying) CaroMessage.Text = "Đến lượt quân X.";
-            else CaroMessage.Text = "Đến lượt quân O.";
+            if (_board.XPlaying) CaroMessage.Text = "Đến lượt quân X...";
+            else CaroMessage.Text = "Đến lượt quân O...";
             if (GameOver)
             {
                 timer2.Stop();
