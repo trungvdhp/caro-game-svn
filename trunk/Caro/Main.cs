@@ -108,7 +108,7 @@ namespace Caro
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 board.NewGame(true, 'x', 3);
             }
             timer1.Start();
@@ -124,6 +124,7 @@ namespace Caro
             Options options = new Options();
             options.ShowInTaskbar = false;
             options.ShowDialog();
+            SaveSettings();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -173,7 +174,7 @@ namespace Caro
 
         private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (board.processing) return;
+            if (board.GameOver || board.processing) return;
             saveFileDialog1.ShowDialog();
             try
             {
@@ -193,6 +194,26 @@ namespace Caro
             catch
             {
             }
+        }
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            SaveSettings();
+        }
+        private void SaveSettings()
+        {
+            try
+            {
+                optionsTable.Rows.Clear();
+                optionsTable.ReadXml("Options.xml");
+                LoadOptions(this);
+                bool playerFirst = op_comboFirstPlayer.Text == "Player" ? true : false;
+                char playerSymbol = op_comboPlayerSymbol.Text == "X" ? 'x' : 'o';
+                int level = op_trackComputerLevel.Value;
+                board.ComputerAI = level;
+                board.PlayerSymbol = playerSymbol;
+            }
+            catch { }
         }
     }
 }

@@ -107,7 +107,7 @@
             this.op_trackComputerLevel.Name = "op_trackComputerLevel";
             this.op_trackComputerLevel.Size = new System.Drawing.Size(83, 45);
             this.op_trackComputerLevel.TabIndex = 3;
-            this.op_trackComputerLevel.Value = 1;
+            this.op_trackComputerLevel.Value = 3;
             this.op_trackComputerLevel.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label3
