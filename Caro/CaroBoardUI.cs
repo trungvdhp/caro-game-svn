@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
+using CaroLibrary;
 
 namespace Caro
 {
@@ -383,21 +384,21 @@ namespace Caro
         }
     }
 
-    public class Step
-    {
-        public char CurrentPlayer;
-        public Position p;
-        public Step()
-        {
-            p = new Position(-1, -1);
-            CurrentPlayer = ' ';
-        }
-        public Step(Position pp, char cc)
-        {
-            CurrentPlayer = cc;
-            p = new Position();
-            p.Set(pp);
-        }
-    }
+    //public class Step
+    //{
+    //    public char CurrentPlayer;
+    //    public Position p;
+    //    public Step()
+    //    {
+    //        p = new Position(-1, -1);
+    //        CurrentPlayer = ' ';
+    //    }
+    //    public Step(Position pp, char cc)
+    //    {
+    //        CurrentPlayer = cc;
+    //        p = new Position();
+    //        p.Set(pp);
+    //    }
+    //}
 }
 
