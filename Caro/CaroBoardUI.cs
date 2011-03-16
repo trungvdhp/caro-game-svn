@@ -171,8 +171,8 @@ namespace Caro
             if (CurrIndex+1 >= step.Count || GameOver || processing) return;
             UpdateGraphic(_board.CurrMove);
             CurrIndex += 1;
-            _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol;
             _board.PrevMove.Set(step[CurrIndex].p);
+            _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol;
             CurrIndex += 1;
             _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol=='x'?'o':'x';
             _board.CurrMove.Set(step[CurrIndex].p);

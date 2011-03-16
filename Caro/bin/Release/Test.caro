@@ -3,9 +3,114 @@
   <Caro>
     <Step xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>8</x>
+          <y>9</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>9</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>9</x>
+          <y>8</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>7</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>8</x>
+          <y>10</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>8</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>10</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>6</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>5</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>11</x>
+          <y>7</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>8</x>
+          <y>11</y>
+        </p>
+      </Step>
+      <Step>
         <CurrentPlayer>120</CurrentPlayer>
         <p>
           <x>8</x>
+          <y>8</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>8</x>
+          <y>12</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>8</x>
+          <y>13</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>9</x>
+          <y>11</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>11</x>
           <y>9</y>
         </p>
       </Step>
@@ -13,28 +118,14 @@
         <CurrentPlayer>111</CurrentPlayer>
         <p>
           <x>7</x>
-          <y>8</y>
+          <y>13</y>
         </p>
       </Step>
       <Step>
         <CurrentPlayer>120</CurrentPlayer>
         <p>
-          <x>9</x>
-          <y>8</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
-          <x>7</x>
-          <y>10</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>120</CurrentPlayer>
-        <p>
-          <x>9</x>
-          <y>7</y>
+          <x>6</x>
+          <y>14</y>
         </p>
       </Step>
       <Step>
@@ -47,91 +138,70 @@
       <Step>
         <CurrentPlayer>120</CurrentPlayer>
         <p>
-          <x>7</x>
-          <y>9</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
-          <x>9</x>
-          <y>9</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>120</CurrentPlayer>
-        <p>
-          <x>8</x>
-          <y>8</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
           <x>6</x>
-          <y>10</y>
+          <y>11</y>
         </p>
       </Step>
       <Step>
-        <CurrentPlayer>120</CurrentPlayer>
+        <CurrentPlayer>111</CurrentPlayer>
         <p>
           <x>10</x>
-          <y>6</y>
+          <y>11</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>11</x>
+          <y>11</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>10</x>
+          <y>12</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>120</CurrentPlayer>
+        <p>
+          <x>11</x>
+          <y>8</y>
         </p>
       </Step>
       <Step>
         <CurrentPlayer>111</CurrentPlayer>
         <p>
           <x>11</x>
-          <y>5</y>
+          <y>10</y>
         </p>
       </Step>
       <Step>
         <CurrentPlayer>120</CurrentPlayer>
         <p>
-          <x>8</x>
+          <x>11</x>
+          <y>5</y>
+        </p>
+      </Step>
+      <Step>
+        <CurrentPlayer>111</CurrentPlayer>
+        <p>
+          <x>11</x>
           <y>6</y>
         </p>
       </Step>
       <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
-          <x>8</x>
-          <y>10</y>
-        </p>
-      </Step>
-      <Step>
         <CurrentPlayer>120</CurrentPlayer>
         <p>
-          <x>8</x>
+          <x>9</x>
           <y>7</y>
         </p>
       </Step>
-      <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
-          <x>8</x>
-          <y>5</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>120</CurrentPlayer>
-        <p>
-          <x>10</x>
-          <y>8</y>
-        </p>
-      </Step>
-      <Step>
-        <CurrentPlayer>111</CurrentPlayer>
-        <p>
-          <x>5</x>
-          <y>10</y>
-        </p>
-      </Step>
     </Step>
-    <PlayerScore>1</PlayerScore>
+    <PlayerScore>0</PlayerScore>
     <ComputerScore>0</ComputerScore>
-    <PlayedTime>38</PlayedTime>
-    <PlayerSymbol>x</PlayerSymbol>
+    <PlayedTime>61</PlayedTime>
+    <PlayerSymbol>o</PlayerSymbol>
   </Caro>
 </DocumentElement>
