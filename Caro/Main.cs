@@ -173,7 +173,26 @@ namespace Caro
 
         private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //board.SaveGame();
+            if (board.GameOver || board.processing) return;
+            saveFileDialog1.ShowDialog();
+            try
+            {
+                board.SaveGame(saveFileDialog1.FileName);
+            }
+            catch{}
+        }
+
+        private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (board.processing) return;
+            openFileDialog1.ShowDialog();
+            try
+            {
+                board.LoadGame(openFileDialog1.FileName);
+            }
+            catch
+            {
+            }
         }
     }
 }
