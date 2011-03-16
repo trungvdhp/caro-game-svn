@@ -22,12 +22,25 @@ namespace Caro
         Image _ImgThink;
         public bool GameOver{private set;get;}
         AI ai;
-        char PlayerSymbol;
+        public char PlayerSymbol;
         public bool processing;
         public int[] kq;
         List<Step> step;
         int t;
         int PlayerScore, ComputerScore;
+        char ComputerSymbol
+        {
+            get{
+                return PlayerSymbol == 'x' ? 'o' : 'x';
+            }
+        }
+        public int ComputerAI
+        {
+            set
+            {
+                ai = new AI(19, value);
+            }
+        }
         #endregion
 
         public CaroBoardUI()
@@ -37,7 +50,7 @@ namespace Caro
             _ImgO = new Bitmap(Properties.Resources.o, CELL_SIZE, CELL_SIZE);
             _ImgThink = new Bitmap(Properties.Resources.think, CELL_SIZE, CELL_SIZE);
             _board = new CaroBoard();
-            this.NewGame(true,'o',4);
+            this.NewGame(true,'x',3);
             t = -1;
             ResetScores();
             GameOver = true;
@@ -47,7 +60,7 @@ namespace Caro
             GameData.Columns.Add("ComputerScore", typeof(int));
             GameData.Columns.Add("PlayedTime", typeof(int));
             GameData.Columns.Add("PlayerSymbol", typeof(char));
-            CaroMessage.Text = "Press option to custom or new game to play!";
+            UpdateMessage();
         }
         /// <summary>
         /// Đặt lại tỉ số
@@ -65,16 +78,26 @@ namespace Caro
         /// <param name="conputerAI">Độ sâu khi máy tính toán</param>
         public void NewGame(bool playerFirst, char playerSymbol, int computerAI)
         {
+            ComputerAI = computerAI;
+            step = new List<Step>();
             PlayerSymbol = playerSymbol=='x'?'x':'o';
             _board = new CaroBoard(19);
             _board.PrevMove.Set(-1, -1);
             kq = new int[5];
+            this.MaximumSize = new Size(_board.size * CELL_SIZE + 1, (_board.size + 1) * CELL_SIZE + 1);
+            this.MinimumSize = new Size(_board.size * CELL_SIZE + 1, (_board.size + 1) * CELL_SIZE + 1);
+            this.Size = new Size(_board.size * CELL_SIZE + 1, (_board.size + 1) * CELL_SIZE + 1);
+            CurrIndex = -1;
+            t = 0;
+            timer2.Start();
+            GameOver = false;
+            Invalidate();
             if (playerFirst)
             {
                 _board.XPlaying = playerSymbol == 'x' ? true : false;
                 _board.CurrMove.Set(-1, -1);
                 CaroCount.Text = "0";
-                CaroMessage.Text = "First is player.";
+                UpdateMessage();
             }
             else
             {
@@ -84,17 +107,6 @@ namespace Caro
                 CaroCount.Text = "1";
                 SwithchPlayer();
             }
-
-            this.MaximumSize = new Size(_board.size * CELL_SIZE+1, (_board.size+1) * CELL_SIZE+1);
-            this.MinimumSize = new Size(_board.size * CELL_SIZE+1, (_board.size+1) * CELL_SIZE+1);
-            this.Size = new Size(_board.size * CELL_SIZE+1, (_board.size+1) * CELL_SIZE+1);
-            Invalidate();            
-            ai = new AI(19, computerAI);
-            step = new List<Step>();
-            CurrIndex = -1;
-            t = 0;
-            timer2.Start();
-            GameOver = false;
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -192,15 +204,34 @@ namespace Caro
             UpdateGraphic(_board.CurrMove);
 
         }
+        void UpdateMessage()
+        {
+            if (step.Count == 0 && GameOver) CaroMessage.Text = "Press option to custom or new game to play!";
+            else if (step.Count == 0) CaroMessage.Text = "You play first.";
+            else if(!GameOver)
+            {
+                if (_board.CurrentPlayer == PlayerSymbol) CaroMessage.Text = "Next to player...";
+                else CaroMessage.Text = "Next to computer...";
+            }
+            else
+            {
+                if(_board.CurrentPlayer==PlayerSymbol)
+                    CaroMessage.Text = "You lose! Chicken, kkk...";
+                else
+                    CaroMessage.Text = "You win! Let's play next round!";
+
+            }
+        }
         public void SwithchPlayer()
         {
             CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             //EchoBoard();
             kq = _board.IsGame0ver;
             GameOver = kq[0]>=5?true:false;
-            while (step.Count > CurrIndex+1) step.RemoveAt(step.Count - 1);
+            while (step.Count-1 > CurrIndex) step.RemoveAt(step.Count - 1);
             step.Add(new Step(_board.CurrMove, _board.CurrentPlayer));
             CurrIndex++;
+            //MessageBox.Show(step.Count.ToString());
             _board.XPlaying = !_board.XPlaying;
             if (_board.CurrentPlayer==PlayerSymbol) CaroMessage.Text = "Next to player...";
             else CaroMessage.Text = "Next to computer...";
@@ -209,16 +240,11 @@ namespace Caro
                 timer2.Stop();
                 Invalidate();
                 if (_board.CurrentPlayer != PlayerSymbol)
-                {
-                    CaroMessage.Text = "You win! Let's play next round!";
                     PlayerScore++;
-                }
                 else
-                {
-                    CaroMessage.Text = "You lose! Chicken, kkk...";
                     ComputerScore++;
-                }
                 CaroScore.Text = PlayerScore + ":" + ComputerScore;
+                UpdateMessage();
                 return;
             }
             
@@ -285,7 +311,7 @@ namespace Caro
             e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE, (_board.CurrMove.x+1) * CELL_SIZE, CELL_SIZE, CELL_SIZE));
             //e.Graphics.DrawRectangle(p, new Rectangle(_board.CurrMove.y * CELL_SIZE-1, _board.CurrMove.x * CELL_SIZE-1, CELL_SIZE+2, CELL_SIZE+2));
             if (processing) e.Graphics.DrawImage(_ImgThink, ai.currp.y * CELL_SIZE, (ai.currp.x +1)* CELL_SIZE);
-            if (kq[0]>=5)
+            if (kq[0]>=5&&GameOver)
             {
                 //MessageBox.Show(" " + kq[0]+ " " + kq[2]*CELL_SIZE + " " + kq[1]*CELL_SIZE + " " + kq[4]*CELL_SIZE + " " + kq[3]*CELL_SIZE);
                 e.Graphics.DrawLine(new Pen(Color.SpringGreen,5), kq[2]*CELL_SIZE+CELL_SIZE/2, (kq[1]+1)*CELL_SIZE+CELL_SIZE/2
@@ -318,10 +344,11 @@ namespace Caro
         private DataTable GameData;
         public void SaveGame(string FileName)
         {
-            if (processing) return;
-            if (GameOver) step.Clear();
+            if (GameOver||processing) return;
+            //if (GameOver) step.Clear();
             GameData.Rows.Clear();
             DataRow r = GameData.NewRow();
+            //MessageBox.Show(step.Count.ToString());
             r["Step"] = step;
             r["PlayerScore"] = PlayerScore;
             r["ComputerScore"] = ComputerScore;
@@ -339,15 +366,19 @@ namespace Caro
             t = (int)GameData.Rows[0]["PlayedTime"];
             PlayerScore = (int)GameData.Rows[0]["PlayerScore"];
             ComputerScore = (int)GameData.Rows[0]["ComputerScore"];
-            PlayerSymbol = (char)GameData.Rows[0]["PlayerSymbol"];
+            char playerSymbol = (char)GameData.Rows[0]["PlayerSymbol"];
+
             CurrIndex = step.Count - 1;
-            if (CurrIndex < 0) GameOver = true;
-            else
+            _board = new CaroBoard(19);
+            for (int i = 0; i < step.Count; i++)
             {
-                for (int i = 0; i < step.Count; i++)
-                    _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer;
-                _board.XPlaying = step[CurrIndex].CurrentPlayer == 'o' ? true : false;
+                _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer == playerSymbol ? PlayerSymbol : ComputerSymbol;
+                _board.XPlaying = (_board.cells[step[i].p.x, step[i].p.y] == 'o');
             }
+            
+            CaroScore.Text = PlayerScore + ":" + ComputerScore;
+            timer2.Start();
+            UpdateMessage();
             Invalidate();
         }
     }

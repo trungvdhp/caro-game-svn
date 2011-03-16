@@ -406,6 +406,7 @@
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "Caro";
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.op_trackComputerLevel)).EndInit();

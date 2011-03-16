@@ -6,7 +6,7 @@
   </Options>
   <Options>
     <C>op_comboPlayerSymbol</C>
-    <V>O</V>
+    <V>X</V>
   </Options>
   <Options>
     <C>op_comboGameLaw</C>
@@ -14,6 +14,6 @@
   </Options>
   <Options>
     <C>op_comboFirstPlayer</C>
-    <V>Computer</V>
+    <V>Player</V>
   </Options>
 </DocumentElement>
