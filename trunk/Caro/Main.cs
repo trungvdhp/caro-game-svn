@@ -173,7 +173,7 @@ namespace Caro
 
         private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (board.GameOver || board.processing) return;
+            if (board.processing) return;
             saveFileDialog1.ShowDialog();
             try
             {
