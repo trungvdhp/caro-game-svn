@@ -176,6 +176,12 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CaroLibrary\CaroLibrary.csproj">
+      <Project>{DF3CC18D-A331-4B27-8DE9-ECBE3980EBB5}</Project>
+      <Name>CaroLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

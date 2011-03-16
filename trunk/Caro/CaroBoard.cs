@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using CaroLibrary;
 
 namespace Caro
 {
-    public class Position
-    {
-        public int x;
-        public int y;
-        public Position()
-        {
-        }
-        public void Set(Position p)
-        {
-            x = p.x;y=p.y;
-        }
-        public void Set(int a, int b)
-        {
-            x = a; y = b;
-        }
-        public Position(int a, int b)
-        {
-            x = a; y = b;
-        }
-    }
+    //public class Position
+    //{
+    //    public int x;
+    //    public int y;
+    //    public Position()
+    //    {
+    //    }
+    //    public void Set(Position p)
+    //    {
+    //        x = p.x;y=p.y;
+    //    }
+    //    public void Set(int a, int b)
+    //    {
+    //        x = a; y = b;
+    //    }
+    //    public Position(int a, int b)
+    //    {
+    //        x = a; y = b;
+    //    }
+    //}
     class CaroBoard
     {
         public char[,] cells;

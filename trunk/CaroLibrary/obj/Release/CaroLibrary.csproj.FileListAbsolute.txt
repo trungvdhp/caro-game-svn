@@ -1,0 +1,7 @@
+D:\Projects\caro-game-svn\Caro\bin\Release\CaroLibrary.dll
+D:\Projects\caro-game-svn\Caro\bin\Release\CaroLibrary.pdb
+D:\Projects\caro-game-svn\CaroLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.dll
+D:\Projects\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.pdb
+C:\bin\Release\CaroLibrary.dll
+C:\bin\Release\CaroLibrary.pdb
