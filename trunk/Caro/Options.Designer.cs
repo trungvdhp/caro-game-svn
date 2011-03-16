@@ -97,7 +97,7 @@
             this.labelTrackbar.Name = "labelTrackbar";
             this.labelTrackbar.Size = new System.Drawing.Size(13, 13);
             this.labelTrackbar.TabIndex = 4;
-            this.labelTrackbar.Text = "1";
+            this.labelTrackbar.Text = "3";
             // 
             // op_trackComputerLevel
             // 
