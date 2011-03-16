@@ -157,7 +157,7 @@ namespace Caro
         private void UpdateGraphic(Position p)
         {
             //MessageBox.Show("i = " + p.x + "j= " + p.y);
-            Rectangle rc = new Rectangle(p.y * CELL_SIZE, (p.x+1) * CELL_SIZE, CELL_SIZE + 1, CELL_SIZE + 1);
+            Rectangle rc = new Rectangle(p.y * CELL_SIZE, (p.x+1) * CELL_SIZE, CELL_SIZE+1, CELL_SIZE + 1);
             Invalidate(rc);
         }
         private void UpdateGr4phic(Position p)
@@ -169,6 +169,7 @@ namespace Caro
         public void Redo()
         {
             if (CurrIndex+1 >= step.Count || GameOver || processing) return;
+            UpdateGraphic(_board.CurrMove);
             CurrIndex += 1;
             _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol;
             _board.PrevMove.Set(step[CurrIndex].p);

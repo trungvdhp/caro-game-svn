@@ -1,0 +1,5 @@
+E:\caro-game-svn\CaroLibrary\bin\Debug\CaroLibrary.dll
+E:\caro-game-svn\CaroLibrary\bin\Debug\CaroLibrary.pdb
+E:\caro-game-svn\CaroLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\caro-game-svn\CaroLibrary\obj\Debug\CaroLibrary.dll
+E:\caro-game-svn\CaroLibrary\obj\Debug\CaroLibrary.pdb
