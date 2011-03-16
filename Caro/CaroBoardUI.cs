@@ -318,7 +318,8 @@ namespace Caro
         private DataTable GameData;
         public void SaveGame(string FileName)
         {
-            if (GameOver || processing) return;
+            if (processing) return;
+            if (GameOver) step.Clear();
             GameData.Rows.Clear();
             DataRow r = GameData.NewRow();
             r["Step"] = step;
@@ -340,9 +341,13 @@ namespace Caro
             ComputerScore = (int)GameData.Rows[0]["ComputerScore"];
             PlayerSymbol = (char)GameData.Rows[0]["PlayerSymbol"];
             CurrIndex = step.Count - 1;
-            for (int i = 0; i < step.Count; i++)
-                _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer;
-            _board.XPlaying = step[CurrIndex].CurrentPlayer == 'o' ? true : false;
+            if (CurrIndex < 0) GameOver = true;
+            else
+            {
+                for (int i = 0; i < step.Count; i++)
+                    _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer;
+                _board.XPlaying = step[CurrIndex].CurrentPlayer == 'o' ? true : false;
+            }
             Invalidate();
         }
     }
