@@ -41,7 +41,13 @@ namespace Caro
             t = -1;
             ResetScores();
             GameOver = true;
-            CaroMessage.Text = "Nhấn option để cài đặt và new game để chơi nào!";
+            GameData = new DataTable("Caro");
+            GameData.Columns.Add("Step", typeof(List<Step>));
+            GameData.Columns.Add("PlayerScore", typeof(int));
+            GameData.Columns.Add("ComputerScore", typeof(int));
+            GameData.Columns.Add("PlayedTime", typeof(int));
+            GameData.Columns.Add("PlayerSymbol", typeof(char));
+            CaroMessage.Text = "Press option to custorm or new game to play!";
         }
         /// <summary>
         /// Đặt lại tỉ số
@@ -68,7 +74,7 @@ namespace Caro
                 _board.XPlaying = playerSymbol == 'x' ? true : false;
                 _board.CurrMove.Set(-1, -1);
                 CaroCount.Text = "0";
-                CaroMessage.Text = "Người chơi đi trước.";
+                CaroMessage.Text = "First is player.";
             }
             else
             {
@@ -196,20 +202,20 @@ namespace Caro
             step.Add(new Step(_board.CurrMove, _board.CurrentPlayer));
             CurrIndex++;
             _board.XPlaying = !_board.XPlaying;
-            if (_board.XPlaying) CaroMessage.Text = "Đến lượt quân X...";
-            else CaroMessage.Text = "Đến lượt quân O...";
+            if (_board.CurrentPlayer==PlayerSymbol) CaroMessage.Text = "Next to player...";
+            else CaroMessage.Text = "Next to computer...";
             if (GameOver)
             {
                 timer2.Stop();
                 Invalidate();
                 if (_board.CurrentPlayer != PlayerSymbol)
                 {
-                    CaroMessage.Text = "Bạn đã thắng! Chơi tiếp nha!";
+                    CaroMessage.Text = "You win! Let's play next round!";
                     PlayerScore++;
                 }
                 else
                 {
-                    CaroMessage.Text = "Bạn đã thua! Bạn là một con gà!";
+                    CaroMessage.Text = "You lose! Chicken, kkk...";
                     ComputerScore++;
                 }
                 CaroScore.Text = PlayerScore + ":" + ComputerScore;
@@ -312,13 +318,32 @@ namespace Caro
         private DataTable GameData;
         public void SaveGame(string FileName)
         {
-
-            GameData = new DataTable("Caro");
-            GameData.Columns.Add("Step", typeof(List<Step>));
+            if (GameOver || processing) return;
+            GameData.Rows.Clear();
             DataRow r = GameData.NewRow();
-            r[0] = step;
+            r["Step"] = step;
+            r["PlayerScore"] = PlayerScore;
+            r["ComputerScore"] = ComputerScore;
+            r["PlayedTime"] = t;
+            r["PlayerSymbol"] = PlayerSymbol;
             GameData.Rows.Add(r);
             GameData.WriteXml(FileName);
+        }
+        public void LoadGame(string FileName)
+        {
+            GameOver = false;
+            GameData.Rows.Clear();
+            GameData.ReadXml(FileName);
+            step = (List<Step>)GameData.Rows[0]["Step"];
+            t = (int)GameData.Rows[0]["PlayedTime"];
+            PlayerScore = (int)GameData.Rows[0]["PlayerScore"];
+            ComputerScore = (int)GameData.Rows[0]["ComputerScore"];
+            PlayerSymbol = (char)GameData.Rows[0]["PlayerSymbol"];
+            CurrIndex = step.Count - 1;
+            for (int i = 0; i < step.Count; i++)
+                _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer;
+            _board.XPlaying = step[CurrIndex].CurrentPlayer == 'o' ? true : false;
+            Invalidate();
         }
     }
 
