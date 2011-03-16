@@ -97,7 +97,6 @@ namespace Caro
             {
                 _board.XPlaying = playerSymbol == 'x' ? true : false;
                 _board.CurrMove.Set(-1, -1);
-                CaroCount.Text = "0";
                 UpdateMessage();
             }
             else
@@ -105,7 +104,6 @@ namespace Caro
                 _board.XPlaying = playerSymbol == 'x' ? false : true;
                 _board.CurrMove.Set(_board.size / 2, _board.size / 2);
                 _board.cells[_board.size / 2, _board.size / 2] = playerSymbol=='x'?'o':'x';
-                CaroCount.Text = "1";
                 SwithchPlayer();
             }
         }
@@ -122,8 +120,6 @@ namespace Caro
                     _board.PrevMove.Set(_board.CurrMove);
                     _board.CurrMove.Set(i, j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
-                    i++; j++;
-                    CaroCurrentMove.Text = ""+i+":"+j;
                     UpdateGraphic(_board.CurrMove);
                     UpdateGraphic(_board.PrevMove);
                     SwithchPlayer();
@@ -134,7 +130,6 @@ namespace Caro
 //                     UpdateGraphic(_board.CurrMove);
 //                 }
                 //Invalidate();
-                CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
             }
             base.OnMouseDown(e);
         }
@@ -180,10 +175,9 @@ namespace Caro
             CurrIndex += 1;
             _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol=='x'?'o':'x';
             _board.CurrMove.Set(step[CurrIndex].p);
-            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 2);
-            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             UpdateGraphic(_board.PrevMove);
             UpdateGraphic(_board.CurrMove);
+            UpdateMessage();
         }
         public void Undo()
         {
@@ -198,12 +192,10 @@ namespace Caro
             if (CurrIndex > 0) _board.PrevMove.Set(step[CurrIndex - 1].p);
             else _board.PrevMove.Set(-1, -1);
             _board.XPlaying = PlayerSymbol == 'x' ? true : false;
-            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) - 2);
-            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             UpdateGraphic(c.p);
             UpdateGraphic(p.p);
             UpdateGraphic(_board.CurrMove);
-
+            UpdateMessage();
         }
         void UpdateMessage()
         {
@@ -222,10 +214,11 @@ namespace Caro
                     CaroMessage.Text = "You win! Let's play next round!";
 
             }
+            CaroCount.Text = (CurrIndex + 1).ToString();
+            CaroCurrentMove.Text=(_board.CurrMove.x+1)+":"+(_board.CurrMove.y+1);
         }
         public void SwithchPlayer()
         {
-            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             //EchoBoard();
             kq = _board.IsGame0ver;
             GameOver = kq[0]>=5?true:false;
@@ -234,8 +227,7 @@ namespace Caro
             CurrIndex++;
             //MessageBox.Show(step.Count.ToString());
             _board.XPlaying = !_board.XPlaying;
-            if (_board.CurrentPlayer==PlayerSymbol) CaroMessage.Text = "Next to player...";
-            else CaroMessage.Text = "Next to computer...";
+            UpdateMessage();
             if (GameOver)
             {
                 timer2.Stop();
@@ -256,6 +248,7 @@ namespace Caro
                 Thread th = new Thread(Computer);
                 th.Start();
             }
+            
         }
         public void Computer()
         {
@@ -271,7 +264,6 @@ namespace Caro
             UpdateGraphic(ai.prevp);
             processing = false;
             timer1.Stop();
-            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
             SwithchPlayer();
         }
         protected override void OnPaint(PaintEventArgs e)
@@ -372,11 +364,10 @@ namespace Caro
             CurrIndex = step.Count - 1;
             _board = new CaroBoard(19);
             for (int i = 0; i < step.Count; i++)
-            {
                 _board.cells[step[i].p.x, step[i].p.y] = step[i].CurrentPlayer == playerSymbol ? PlayerSymbol : ComputerSymbol;
-                _board.XPlaying = (_board.cells[step[i].p.x, step[i].p.y] == 'o');
-            }
-            
+
+            _board.XPlaying = (_board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] == 'o');
+            _board.CurrMove.Set(step[CurrIndex].p);
             CaroScore.Text = PlayerScore + ":" + ComputerScore;
             timer2.Start();
             UpdateMessage();
