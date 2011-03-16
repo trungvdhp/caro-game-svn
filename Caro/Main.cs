@@ -165,5 +165,15 @@ namespace Caro
         {
 
         }
+
+        private void resetScoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            board.ResetScores();
+        }
+
+        private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            board.SaveGame();
+        }
     }
 }

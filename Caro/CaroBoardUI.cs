@@ -27,6 +27,7 @@ namespace Caro
         public int[] kq;
         List<Step> step;
         int t;
+        int PlayerScore, ComputerScore;
         #endregion
 
         public CaroBoardUI()
@@ -39,7 +40,16 @@ namespace Caro
             CaroMessage.Text = "Nhấn vào option để cài đặt và new game để chơi nào!";
             this.NewGame(true,'o',4);
             t = -1;
+            ResetScores();
             GameOver = true;
+        }
+        /// <summary>
+        /// Đặt lại tỉ số
+        /// </summary>
+        public void ResetScores()
+        {
+            PlayerScore = ComputerScore = 0;
+            CaroScore.Text = PlayerScore + ":" + ComputerScore;
         }
         /// <summary>
         /// Bắt đầu game mới
@@ -50,7 +60,7 @@ namespace Caro
         public void NewGame(bool playerFirst, char playerSymbol, int computerAI)
         {
             PlayerSymbol = playerSymbol=='x'?'x':'o';
-            _board = new CaroBoard(20);
+            _board = new CaroBoard(19);
             _board.PrevMove.Set(-1, -1);
             kq = new int[5];
             if (playerFirst)
@@ -72,7 +82,7 @@ namespace Caro
             this.MinimumSize = new Size(_board.size * CELL_SIZE+1, (_board.size+1) * CELL_SIZE+1);
             this.Size = new Size(_board.size * CELL_SIZE+1, (_board.size+1) * CELL_SIZE+1);
             Invalidate();            
-            ai = new AI(20, computerAI);
+            ai = new AI(19, computerAI);
             step = new List<Step>();
             CurrIndex = -1;
             t = 0;
@@ -92,6 +102,8 @@ namespace Caro
                     _board.PrevMove.Set(_board.CurrMove);
                     _board.CurrMove.Set(i, j);
                     _board.cells[i, j] = _board.XPlaying ? 'x' : 'o';
+                    i++; j++;
+                    CaroCurrentMove.Text = ""+i+":"+j;
                     UpdateGraphic(_board.CurrMove);
                     UpdateGraphic(_board.PrevMove);
                     SwithchPlayer();
@@ -102,7 +114,7 @@ namespace Caro
 //                     UpdateGraphic(_board.CurrMove);
 //                 }
                 //Invalidate();
-                CaroCount.Text = "" + Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
+                CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
             }
             base.OnMouseDown(e);
         }
@@ -148,6 +160,8 @@ namespace Caro
             CurrIndex += 1;
             _board.cells[step[CurrIndex].p.x, step[CurrIndex].p.y] = PlayerSymbol=='x'?'o':'x';
             _board.CurrMove.Set(step[CurrIndex].p);
+            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 2);
+            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             UpdateGraphic(_board.PrevMove);
             UpdateGraphic(_board.CurrMove);
         }
@@ -159,11 +173,13 @@ namespace Caro
             CurrIndex -= 2;
             _board.cells[c.p.x, c.p.y] = ' ';
             _board.cells[p.p.x, p.p.y] = ' ';
-            if (CurrIndex>-1) _board.CurrMove.Set(step[CurrIndex].p);
+            if (CurrIndex>-1)_board.CurrMove.Set(step[CurrIndex].p);
             else _board.CurrMove.Set(-1,-1);
             if (CurrIndex > 0) _board.PrevMove.Set(step[CurrIndex - 1].p);
             else _board.PrevMove.Set(-1, -1);
             _board.XPlaying = PlayerSymbol == 'x' ? true : false;
+            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) - 2);
+            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             UpdateGraphic(c.p);
             UpdateGraphic(p.p);
             UpdateGraphic(_board.CurrMove);
@@ -171,6 +187,7 @@ namespace Caro
         }
         public void SwithchPlayer()
         {
+            CaroCurrentMove.Text = Convert.ToString(_board.CurrMove.x + 1) + ":" + Convert.ToString(_board.CurrMove.y + 1);
             //EchoBoard();
             kq = _board.IsGame0ver;
             GameOver = kq[0]>=5?true:false;
@@ -184,10 +201,17 @@ namespace Caro
             {
                 timer2.Stop();
                 Invalidate();
-                if (_board.XPlaying)
-                    CaroMessage.Text = "Quân O đã thắng...";
+                if (_board.CurrentPlayer != PlayerSymbol)
+                {
+                    CaroMessage.Text = "Bạn đã thắng! Chơi tiếp nha!";
+                    PlayerScore++;
+                }
                 else
-                    CaroMessage.Text = "Quân X thắng...";
+                {
+                    CaroMessage.Text = "Bạn đã thua! Bạn là một con gà!";
+                    ComputerScore++;
+                }
+                CaroScore.Text = PlayerScore + ":" + ComputerScore;
                 return;
             }
             
@@ -213,7 +237,7 @@ namespace Caro
             UpdateGraphic(ai.prevp);
             processing = false;
             timer1.Stop();
-            CaroCount.Text = "" + Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
+            CaroCount.Text = Convert.ToString(Convert.ToInt16(CaroCount.Text) + 1);
             SwithchPlayer();
         }
         protected override void OnPaint(PaintEventArgs e)
@@ -257,7 +281,7 @@ namespace Caro
             if (kq[0]>=5)
             {
                 //MessageBox.Show(" " + kq[0]+ " " + kq[2]*CELL_SIZE + " " + kq[1]*CELL_SIZE + " " + kq[4]*CELL_SIZE + " " + kq[3]*CELL_SIZE);
-                e.Graphics.DrawLine(new Pen(Color.SpringGreen,3), kq[2]*CELL_SIZE+CELL_SIZE/2, (kq[1]+1)*CELL_SIZE+CELL_SIZE/2
+                e.Graphics.DrawLine(new Pen(Color.SpringGreen,5), kq[2]*CELL_SIZE+CELL_SIZE/2, (kq[1]+1)*CELL_SIZE+CELL_SIZE/2
                     , kq[4]*CELL_SIZE+CELL_SIZE/2, (kq[3]+1)*CELL_SIZE+CELL_SIZE/2);
             }
             base.OnPaint(e);
@@ -284,8 +308,20 @@ namespace Caro
             if(se<10) CaroTime.Text += ":0" + se;
             else CaroTime.Text += ":"+se;
         }
+        private DataTable GameData;
+        public void SaveGame(string FileName)
+        {
+
+            GameData = new DataTable("Caro");
+            GameData.Columns.Add("Step", typeof(List<Step>));
+            DataRow r = GameData.NewRow();
+            r[0] = step;
+            GameData.Rows.Add(r);
+            GameData.WriteXml(FileName);
+        }
     }
-    class Step
+
+    public class Step
     {
         public char CurrentPlayer;
         public Position p;

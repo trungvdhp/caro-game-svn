@@ -12,6 +12,7 @@
     <AssemblyName>Caro</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Caro.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -160,6 +161,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\saveHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Caro.ico" />
+    <None Include="Resources\gnome_view_refresh.png" />
+    <None Include="Resources\game_pad1.png" />
+    <None Include="Resources\game_pad.png" />
+    <None Include="Resources\gnome_input_gaming.png" />
+    <None Include="Resources\reset.png" />
+    <None Include="Resources\reset1.png" />
+    <None Include="Resources\PageSetup.png" />
+    <None Include="Resources\settings.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />

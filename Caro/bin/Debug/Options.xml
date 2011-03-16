@@ -2,11 +2,11 @@
 <DocumentElement>
   <Options>
     <C>op_trackComputerLevel</C>
-    <V>5</V>
+    <V>3</V>
   </Options>
   <Options>
     <C>op_comboPlayerSymbol</C>
-    <V>O</V>
+    <V>X</V>
   </Options>
   <Options>
     <C>op_comboGameLaw</C>

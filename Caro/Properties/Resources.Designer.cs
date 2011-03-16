@@ -81,6 +81,34 @@ namespace Caro.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap game_pad {
+            get {
+                object obj = ResourceManager.GetObject("game_pad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap game_pad1 {
+            get {
+                object obj = ResourceManager.GetObject("game_pad1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gnome_input_gaming {
+            get {
+                object obj = ResourceManager.GetObject("gnome_input_gaming", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gnome_view_refresh {
+            get {
+                object obj = ResourceManager.GetObject("gnome_view_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gomokub {
             get {
                 object obj = ResourceManager.GetObject("gomokub", resourceCulture);
@@ -123,9 +151,37 @@ namespace Caro.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap PageSetup {
+            get {
+                object obj = ResourceManager.GetObject("PageSetup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap reset {
+            get {
+                object obj = ResourceManager.GetObject("reset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap reset1 {
+            get {
+                object obj = ResourceManager.GetObject("reset1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap saveHS {
             get {
                 object obj = ResourceManager.GetObject("saveHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap settings {
+            get {
+                object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
