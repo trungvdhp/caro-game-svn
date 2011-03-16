@@ -36,7 +36,11 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CaroPosition = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.CaroCurrentMove = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.CaroCount = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.CaroScore = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.CaroMessage = new System.Windows.Forms.ToolStripLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -51,6 +55,7 @@
             // 
             this.CaroStatus.AutoSize = false;
             this.CaroStatus.BackColor = System.Drawing.Color.Lavender;
+            this.CaroStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.CaroStatus.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CaroStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
@@ -58,7 +63,11 @@
             this.toolStripSeparator1,
             this.CaroPosition,
             this.toolStripSeparator3,
+            this.CaroCurrentMove,
+            this.toolStripSeparator6,
             this.CaroCount,
+            this.toolStripSeparator5,
+            this.CaroScore,
             this.toolStripSeparator4,
             this.CaroMessage});
             this.CaroStatus.Location = new System.Drawing.Point(0, 0);
@@ -75,9 +84,9 @@
             // CaroTime
             // 
             this.CaroTime.Name = "CaroTime";
-            this.CaroTime.Size = new System.Drawing.Size(35, 22);
+            this.CaroTime.Size = new System.Drawing.Size(41, 22);
             this.CaroTime.Text = "00:00";
-            this.CaroTime.ToolTipText = "Thời gian ván chơi";
+            this.CaroTime.ToolTipText = "Played time";
             // 
             // toolStripSeparator1
             // 
@@ -87,21 +96,45 @@
             // CaroPosition
             // 
             this.CaroPosition.Name = "CaroPosition";
-            this.CaroPosition.Size = new System.Drawing.Size(23, 22);
+            this.CaroPosition.Size = new System.Drawing.Size(27, 22);
             this.CaroPosition.Text = "0:0";
-            this.CaroPosition.ToolTipText = "Tọa độ ô cờ";
+            this.CaroPosition.ToolTipText = "Current Position";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // CaroCurrentMove
+            // 
+            this.CaroCurrentMove.Name = "CaroCurrentMove";
+            this.CaroCurrentMove.Size = new System.Drawing.Size(27, 22);
+            this.CaroCurrentMove.Text = "0:0";
+            this.CaroCurrentMove.ToolTipText = "Current Move";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
             // CaroCount
             // 
             this.CaroCount.Name = "CaroCount";
-            this.CaroCount.Size = new System.Drawing.Size(13, 22);
+            this.CaroCount.Size = new System.Drawing.Size(15, 22);
             this.CaroCount.Text = "0";
-            this.CaroCount.ToolTipText = "Số quân trên bàn cờ";
+            this.CaroCount.ToolTipText = "Total symbols";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // CaroScore
+            // 
+            this.CaroScore.Name = "CaroScore";
+            this.CaroScore.Size = new System.Drawing.Size(27, 22);
+            this.CaroScore.Text = "0:0";
+            this.CaroScore.ToolTipText = "Score: Player : Computer";
             // 
             // toolStripSeparator4
             // 
@@ -111,9 +144,9 @@
             // CaroMessage
             // 
             this.CaroMessage.Name = "CaroMessage";
-            this.CaroMessage.Size = new System.Drawing.Size(49, 22);
+            this.CaroMessage.Size = new System.Drawing.Size(58, 22);
             this.CaroMessage.Text = "Message";
-            this.CaroMessage.ToolTipText = "Thông điệp";
+            this.CaroMessage.ToolTipText = "Message";
             // 
             // timer2
             // 
@@ -146,6 +179,10 @@
         private System.Windows.Forms.ToolStripLabel CaroMessage;
         private System.Windows.Forms.ToolStripLabel CaroCount;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripLabel CaroScore;
+        private System.Windows.Forms.ToolStripLabel CaroCurrentMove;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 
     }
 }

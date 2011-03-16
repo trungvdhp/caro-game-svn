@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Caro
 {
-    class Position
+    public class Position
     {
         public int x;
         public int y;
