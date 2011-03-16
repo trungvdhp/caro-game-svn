@@ -47,7 +47,7 @@ namespace Caro
             GameData.Columns.Add("ComputerScore", typeof(int));
             GameData.Columns.Add("PlayedTime", typeof(int));
             GameData.Columns.Add("PlayerSymbol", typeof(char));
-            CaroMessage.Text = "Press option to custorm or new game to play!";
+            CaroMessage.Text = "Press option to custom or new game to play!";
         }
         /// <summary>
         /// Đặt lại tỉ số

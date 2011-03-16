@@ -25,6 +25,4 @@ C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Release\Caro.Properties.Resources.reso
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Release\Caro.Test.resources
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
 C:\Users\HaiAnh\Desktop\Caro\Caro\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
-D:\Projects\caro-game-svn\Caro\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
-D:\Projects\caro-game-svn\Caro\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
 D:\Projects\caro-game-svn\Caro\obj\x86\Release\Caro.CaroBoardUI.resources
