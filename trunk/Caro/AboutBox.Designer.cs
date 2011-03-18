@@ -37,7 +37,7 @@
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.DescriptionPanel = new System.Windows.Forms.Panel();
-            this.CaroDescription1 = new System.Windows.Forms.Label();
+            this.CaroDescription = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel.SuspendLayout();
@@ -154,22 +154,26 @@
             // 
             this.DescriptionPanel.BackColor = System.Drawing.Color.Azure;
             this.DescriptionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DescriptionPanel.Controls.Add(this.CaroDescription1);
+            this.DescriptionPanel.Controls.Add(this.CaroDescription);
             this.DescriptionPanel.Location = new System.Drawing.Point(121, 95);
             this.DescriptionPanel.Name = "DescriptionPanel";
             this.DescriptionPanel.Size = new System.Drawing.Size(236, 112);
             this.DescriptionPanel.TabIndex = 25;
+            this.DescriptionPanel.MouseLeave += new System.EventHandler(this.DescriptionPanel_MouseLeave);
+            this.DescriptionPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DescriptionPanel_MouseMove);
             // 
-            // CaroDescription1
+            // CaroDescription
             // 
-            this.CaroDescription1.AutoSize = true;
-            this.CaroDescription1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.CaroDescription1.Location = new System.Drawing.Point(8, 109);
-            this.CaroDescription1.Name = "CaroDescription1";
-            this.CaroDescription1.Size = new System.Drawing.Size(219, 195);
-            this.CaroDescription1.TabIndex = 0;
-            this.CaroDescription1.Text = resources.GetString("CaroDescription1.Text");
-            this.CaroDescription1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CaroDescription.AutoSize = true;
+            this.CaroDescription.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.CaroDescription.Location = new System.Drawing.Point(8, 109);
+            this.CaroDescription.Name = "CaroDescription";
+            this.CaroDescription.Size = new System.Drawing.Size(219, 221);
+            this.CaroDescription.TabIndex = 0;
+            this.CaroDescription.Text = resources.GetString("CaroDescription.Text");
+            this.CaroDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CaroDescription.MouseLeave += new System.EventHandler(this.DescriptionPanel_MouseLeave);
+            this.CaroDescription.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DescriptionPanel_MouseMove);
             // 
             // pictureBox1
             // 
@@ -223,7 +227,7 @@
         private System.Windows.Forms.Label labelProductName;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label labelCopyright;
-        private System.Windows.Forms.Label CaroDescription1;
+        private System.Windows.Forms.Label CaroDescription;
         private System.Windows.Forms.Timer timer1;
     }
 }

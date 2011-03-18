@@ -117,8 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CaroDescription1.Text" xml:space="preserve">
-    <value>Caro
+  <data name="CaroDescription.Text" xml:space="preserve">
+    <value>*~.~*
+Caro
 Team 9
 Cnt49dh1 Class
 Viet Nam Maritime University
@@ -131,8 +132,9 @@ Mạc Hải Anh - Tester
 ------------------------------------------
 AI: Min Max - Alpha Beta Cut
 Language  C#
-------------------
-Have Fun!</value>
+-------------------
+Have Fun!
+~.~</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

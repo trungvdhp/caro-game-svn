@@ -51,6 +51,7 @@ namespace Caro
             _ImgO = new Bitmap(Properties.Resources.o, CELL_SIZE, CELL_SIZE);
             _ImgThink = new Bitmap(Properties.Resources.think, CELL_SIZE, CELL_SIZE);
             _board = new CaroBoard();
+            GameOver = true;
             this.NewGame(true,'x',3);
             t = -1;
             ResetScores();
@@ -79,6 +80,13 @@ namespace Caro
         /// <param name="conputerAI">Độ sâu khi máy tính toán</param>
         public void NewGame(bool playerFirst, char playerSymbol, int computerAI)
         {
+            if (!GameOver)
+            {
+                if (MessageBox.Show("You lose this round?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                    return;
+                ComputerScore += 1;
+                UpdateMessage();
+            }
             ComputerAI = computerAI;
             step = new List<Step>();
             PlayerSymbol = playerSymbol=='x'?'x':'o';
@@ -97,7 +105,6 @@ namespace Caro
             {
                 _board.XPlaying = playerSymbol == 'x' ? true : false;
                 _board.CurrMove.Set(-1, -1);
-                UpdateMessage();
             }
             else
             {
@@ -217,6 +224,7 @@ namespace Caro
             }
             CaroCount.Text = (CurrIndex + 1).ToString();
             CaroCurrentMove.Text=(_board.CurrMove.x+1)+":"+(_board.CurrMove.y+1);
+            CaroScore.Text = PlayerScore + ":" + ComputerScore;
         }
         public void SwithchPlayer()
         {
@@ -237,7 +245,6 @@ namespace Caro
                     PlayerScore++;
                 else
                     ComputerScore++;
-                CaroScore.Text = PlayerScore + ":" + ComputerScore;
                 UpdateMessage();
                 return;
             }
