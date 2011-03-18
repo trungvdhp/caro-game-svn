@@ -102,9 +102,19 @@ namespace Caro
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CaroDescription1.Location = new Point(CaroDescription1.Location.X, CaroDescription1.Location.Y - 2);
-            if (CaroDescription1.Location.Y <=-CaroDescription1.Size.Height)
-                CaroDescription1.Location = new Point(CaroDescription1.Location.X, 109);
+            CaroDescription.Location = new Point(CaroDescription.Location.X, CaroDescription.Location.Y - 2);
+            if (CaroDescription.Location.Y <=-CaroDescription.Size.Height)
+                CaroDescription.Location = new Point(CaroDescription.Location.X, 109);
+        }
+
+        private void DescriptionPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            timer1.Stop();
+        }
+
+        private void DescriptionPanel_MouseLeave(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }

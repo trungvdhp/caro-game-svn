@@ -92,7 +92,7 @@
             this.optionsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.gameToolStripMenuItem.Text = "&Game";
             // 
             // newGameToolStripMenuItem
@@ -100,7 +100,7 @@
             this.newGameToolStripMenuItem.Image = global::Caro.Properties.Resources.game_pad1;
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.newGameToolStripMenuItem.Text = "&New game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
@@ -109,7 +109,7 @@
             this.loadGameToolStripMenuItem.Image = global::Caro.Properties.Resources.openHS;
             this.loadGameToolStripMenuItem.Name = "loadGameToolStripMenuItem";
             this.loadGameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.loadGameToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.loadGameToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.loadGameToolStripMenuItem.Text = "&Load game...";
             this.loadGameToolStripMenuItem.Click += new System.EventHandler(this.loadGameToolStripMenuItem_Click);
             // 
@@ -118,7 +118,7 @@
             this.saveGameToolStripMenuItem.Image = global::Caro.Properties.Resources.saveHS;
             this.saveGameToolStripMenuItem.Name = "saveGameToolStripMenuItem";
             this.saveGameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveGameToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.saveGameToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.saveGameToolStripMenuItem.Text = "&Save game";
             this.saveGameToolStripMenuItem.Click += new System.EventHandler(this.saveGameToolStripMenuItem_Click);
             // 
@@ -126,7 +126,7 @@
             // 
             this.optionsToolStripMenuItem.Image = global::Caro.Properties.Resources.PageSetup;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.optionsToolStripMenuItem.Text = "&Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -134,7 +134,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -145,7 +145,7 @@
             this.redoToolStripMenuItem,
             this.resetScoresToolStripMenuItem});
             this.commandToolStripMenuItem.Name = "commandToolStripMenuItem";
-            this.commandToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.commandToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.commandToolStripMenuItem.Text = "&Command";
             // 
             // undoToolStripMenuItem
@@ -153,7 +153,7 @@
             this.undoToolStripMenuItem.Image = global::Caro.Properties.Resources.Edit_UndoHS;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -162,7 +162,7 @@
             this.redoToolStripMenuItem.Image = global::Caro.Properties.Resources.Edit_RedoHS;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
@@ -170,7 +170,7 @@
             // 
             this.resetScoresToolStripMenuItem.Image = global::Caro.Properties.Resources.reset_scores;
             this.resetScoresToolStripMenuItem.Name = "resetScoresToolStripMenuItem";
-            this.resetScoresToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.resetScoresToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.resetScoresToolStripMenuItem.Text = "Re&set scores";
             this.resetScoresToolStripMenuItem.Click += new System.EventHandler(this.resetScoresToolStripMenuItem_Click);
             // 
@@ -181,7 +181,7 @@
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // helpToolStripMenuItem1
@@ -189,15 +189,16 @@
             this.helpToolStripMenuItem1.Image = global::Caro.Properties.Resources.Help;
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
             this.helpToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
             this.helpToolStripMenuItem1.Text = "&Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -414,6 +415,7 @@
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "Caro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Shown += new System.EventHandler(this.Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

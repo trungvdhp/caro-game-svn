@@ -9,7 +9,7 @@ using System;
 [assembly: AssemblyTitle("Caro")]
 [assembly: AssemblyDescription("Caro Game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CNT49DH1")]
+[assembly: AssemblyCompany("Cnt49Dh1")]
 [assembly: AssemblyProduct("Caro")]
 [assembly: AssemblyCopyright("Copyright © Vimaru 2011")]
 [assembly: AssemblyTrademark("")]

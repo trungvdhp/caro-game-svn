@@ -164,8 +164,7 @@ namespace Caro
 
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form f = new AboutBox();
-            f.ShowDialog();
+            MessageBox.Show("The goal is to get five X's (or O's) in a row\n while preventing your opponent\n from getting five O's (X's) in a row.\n (Horizontal, vertical and diagonal\n rows are all allowed.)","Help", MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void resetScoresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,6 +214,19 @@ namespace Caro
                 board.PlayerSymbol = playerSymbol;
             }
             catch { }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new AboutBox();
+            f.ShowDialog();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!board.GameOver)
+                if (MessageBox.Show("Do you want to save current game?", "Caution", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    saveGameToolStripMenuItem_Click(sender, e);
         }
     }
 }
