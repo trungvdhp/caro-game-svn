@@ -8,3 +8,8 @@ C:\bin\Release\CaroLibrary.pdb
 E:\caro-game-svn\CaroLibrary\obj\Release\ResolveAssemblyReference.cache
 E:\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.dll
 E:\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.pdb
+D:\caro-game-svn\CaroLibrary\bin\Release\CaroLibrary.dll
+D:\caro-game-svn\CaroLibrary\bin\Release\CaroLibrary.pdb
+D:\caro-game-svn\CaroLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.dll
+D:\caro-game-svn\CaroLibrary\obj\Release\CaroLibrary.pdb

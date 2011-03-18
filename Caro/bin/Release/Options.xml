@@ -2,7 +2,7 @@
 <DocumentElement>
   <Options>
     <C>op_trackComputerLevel</C>
-    <V>4</V>
+    <V>3</V>
   </Options>
   <Options>
     <C>op_comboPlayerSymbol</C>
@@ -14,6 +14,6 @@
   </Options>
   <Options>
     <C>op_comboFirstPlayer</C>
-    <V>Player</V>
+    <V>Computer</V>
   </Options>
 </DocumentElement>

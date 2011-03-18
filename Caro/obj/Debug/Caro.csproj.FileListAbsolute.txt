@@ -13,3 +13,4 @@ E:\caro-game-svn\Caro\obj\Debug\Caro.Test.resources
 E:\caro-game-svn\Caro\obj\Debug\Caro.csproj.GenerateResource.Cache
 E:\caro-game-svn\Caro\obj\Debug\Caro.exe
 E:\caro-game-svn\Caro\obj\Debug\Caro.pdb
+E:\caro-game-svn\Caro\obj\Debug\Caro.AboutBox.resources
