@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="AI.cs" />
     <Compile Include="CaroBoard.cs" />
     <Compile Include="CaroBoardUI2.cs">
@@ -95,39 +101,49 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Test.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CaroBoardUI2.resx">
       <DependentUpon>CaroBoardUI2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CaroBoardUI.resx">
       <DependentUpon>CaroBoardUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Fake.resx">
       <DependentUpon>Fake.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -158,9 +174,6 @@
     <None Include="Resources\think.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NewDocumentHS.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Edit_RedoHS.png" />
   </ItemGroup>
   <ItemGroup>
@@ -173,30 +186,24 @@
     <None Include="Resources\openHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\OptionsHS.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\saveHS.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Caro.ico" />
-    <None Include="Resources\gnome_view_refresh.png" />
+    <None Include="Resources\CaroBoard.png" />
+    <None Include="Resources\FitVimaru.png" />
+    <None Include="Resources\reset scores.png" />
     <None Include="Resources\game_pad1.png" />
-    <None Include="Resources\game_pad.png" />
-    <None Include="Resources\gnome_input_gaming.png" />
-    <None Include="Resources\reset.png" />
-    <None Include="Resources\reset1.png" />
     <None Include="Resources\PageSetup.png" />
-    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CaroLibrary\CaroLibrary.csproj">
       <Project>{DF3CC18D-A331-4B27-8DE9-ECBE3980EBB5}</Project>
       <Name>CaroLibrary</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

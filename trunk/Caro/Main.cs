@@ -164,7 +164,8 @@ namespace Caro
 
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Form f = new AboutBox();
+            f.ShowDialog();
         }
 
         private void resetScoresToolStripMenuItem_Click(object sender, EventArgs e)

@@ -67,6 +67,13 @@ namespace Caro.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap CaroBoard {
+            get {
+                object obj = ResourceManager.GetObject("CaroBoard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Edit_RedoHS {
             get {
                 object obj = ResourceManager.GetObject("Edit_RedoHS", resourceCulture);
@@ -81,9 +88,9 @@ namespace Caro.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap game_pad {
+        internal static System.Drawing.Bitmap FitVimaru {
             get {
-                object obj = ResourceManager.GetObject("game_pad", resourceCulture);
+                object obj = ResourceManager.GetObject("FitVimaru", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -91,20 +98,6 @@ namespace Caro.Properties {
         internal static System.Drawing.Bitmap game_pad1 {
             get {
                 object obj = ResourceManager.GetObject("game_pad1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap gnome_input_gaming {
-            get {
-                object obj = ResourceManager.GetObject("gnome_input_gaming", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap gnome_view_refresh {
-            get {
-                object obj = ResourceManager.GetObject("gnome_view_refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,13 +116,6 @@ namespace Caro.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap NewDocumentHS {
-            get {
-                object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap o {
             get {
                 object obj = ResourceManager.GetObject("o", resourceCulture);
@@ -144,13 +130,6 @@ namespace Caro.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap OptionsHS {
-            get {
-                object obj = ResourceManager.GetObject("OptionsHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap PageSetup {
             get {
                 object obj = ResourceManager.GetObject("PageSetup", resourceCulture);
@@ -158,16 +137,9 @@ namespace Caro.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap reset {
+        internal static System.Drawing.Bitmap reset_scores {
             get {
-                object obj = ResourceManager.GetObject("reset", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap reset1 {
-            get {
-                object obj = ResourceManager.GetObject("reset1", resourceCulture);
+                object obj = ResourceManager.GetObject("reset_scores", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -175,13 +147,6 @@ namespace Caro.Properties {
         internal static System.Drawing.Bitmap saveHS {
             get {
                 object obj = ResourceManager.GetObject("saveHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap settings {
-            get {
-                object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

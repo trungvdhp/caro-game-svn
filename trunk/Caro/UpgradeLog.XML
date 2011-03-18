@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Caro">
+</Property><Property Name="Solution File" Value="D:\caro-game-svn\Caro\Caro.sln">
+</Property><Property Name="Date" Value="Thursday, March 17, 2011">
+</Property><Property Name="Time" Value="10:17 AM">
+</Property></Properties><Event ErrorLevel="0" Project="Caro" Source="Caro.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Caro" Source="Caro.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="Caro.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Caro.sln" Description="Converted">
+</Event></UpgradeLog>
