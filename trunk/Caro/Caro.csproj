@@ -194,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Caro.ico" />
+    <None Include="Resources\Game.png" />
     <None Include="Resources\CaroBoard.png" />
     <None Include="Resources\FitVimaru.png" />
     <None Include="Resources\reset scores.png" />

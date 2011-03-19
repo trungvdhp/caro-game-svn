@@ -178,7 +178,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = global::Caro.Properties.Resources.CaroBoard;
+            this.pictureBox1.Image = global::Caro.Properties.Resources.Game;
             this.pictureBox1.Location = new System.Drawing.Point(3, 95);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(112, 112);
